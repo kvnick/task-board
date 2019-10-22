@@ -6,12 +6,6 @@ export const withBoardContext = Component =>
   {value => <Component {...props} {...value} /> }
   </BoardContext.Consumer>
 
-export const FirebaseContext = createContext();
-export const withFirebaseContext = Component =>
-  props => <FirebaseContext.Consumer>
-  {firebase => <Component {...props} firebase={firebase} />}
-  </FirebaseContext.Consumer>
-
 export const AuthUserContext = createContext();
 export const withAuthUserContext = Component =>
   props => <AuthUserContext.Consumer>
