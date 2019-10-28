@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 
+import { Loading } from '../../custom/Loading';
 import TaskFormRender from './TaskFormRender/TaskFormRender';
 
 const TaskForm = (props) => {
     const {
+        loading,
         statuses,
         priorities,
         seriousness,
@@ -27,13 +29,16 @@ const TaskForm = (props) => {
             : statuses;
     };
 
-    const handleDelete = task && task.id ? () => onDelete(task.id) : null;
     const validStatuses = getValidStatuses(task ? task.status : []);
     const subscription = {
         pristine: true,
         values: true,
         initialValues: true
     };
+
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <Form
@@ -44,7 +49,6 @@ const TaskForm = (props) => {
             {formProps => (
                 <TaskFormRender
                     onCancel={onCancel}
-                    onDelete={handleDelete}
                     statuses={statuses}
                     priorities={priorities}
                     seriousness={seriousness}

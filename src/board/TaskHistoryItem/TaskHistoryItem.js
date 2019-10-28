@@ -17,17 +17,13 @@ const TaskHistoryItem = props => {
     return (
         <Card className={classes.root}>
             <CardHeader
-                titleTypographyProps={{ variant: 'subtitle1' }}
-                subheaderTypographyProps={{ variant: 'subtitle2' }}
-                avatar={
-                    item.user && (
-                        <Avatar size="small" className={classes.avatar}>
-                            {item.user.substr(0, 2)}
-                        </Avatar>
-                    )
-                }
                 title={item.user}
                 subheader={item.date && formatDate(item.date)}
+                avatar={item.user && (
+                    <Avatar size="small" className={classes.avatar}>
+                        {item.user.substr(0, 2)}
+                    </Avatar>
+                )}
             />
 
             <Divider />

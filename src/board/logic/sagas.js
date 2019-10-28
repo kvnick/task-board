@@ -1,9 +1,11 @@
 import { put, call, select } from 'redux-saga/effects';
 
+import * as firebaseApi from '../../services/FirebaseApp';
 import * as BoardActions from './actions';
 import * as BoardSelectors from './selectors';
 import { AuthSelectors } from './../../auth/logic';
-import * as firebaseApi from '../../services/FirebaseApp';
+import { ROUTES } from '../../App';
+import history from '../../utils/customHistory';
 
 export function* fetchTasks() {
     yield put(BoardActions.setLoading(true));
@@ -49,7 +51,8 @@ export function* createTask(taskModel) {
         };
         const ref = firebaseApi.tasks();
         const response = yield call([ref, ref.push], { ...task });
-        // redirect to tasks list
+
+        history.push(ROUTES.PREVIEW_TASK.replace(':id', response.key));
     } catch(error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -73,7 +76,9 @@ export function* updateTask(taskModel) {
             };
             yield call(createTaskHistory, id, historyData);
         }
-        // redirect to tasks list
+
+        yield put(BoardActions.setTask({ ...task, id }));
+        history.push(ROUTES.TASKS_PAGE);
     } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -101,7 +106,7 @@ export function* deleteTask(id) {
     try {
         const ref = firebaseApi.task(id);
         const response = yield call([ref, ref.remove]);
-        // redirect to tasks page
+        history.push(ROUTES.TASKS_PAGE);
     } catch(error) {
         yield put(BoardActions.setError(error));
     } finally {

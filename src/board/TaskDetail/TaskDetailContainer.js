@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchTask: (id) => dispatch(BoardActions.fetchTask(id)),
     onSubmit: (values, formApi, onFinished) => dispatch(BoardActions.updateTask(values)),
+    onDelete: (id) => dispatch(BoardActions.deleteTask(id))
 });
 
 export default connect(

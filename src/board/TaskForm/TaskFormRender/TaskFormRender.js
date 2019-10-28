@@ -11,10 +11,10 @@ import useStyles from './styles';
 const TaskFormRender = props => {
     const {
         onCancel,
-        onDelete,
         priorities,
         seriousness,
-        validStatuses
+        validStatuses,
+        ...formProps
     } = props;
 
     const classes = useStyles();
@@ -23,11 +23,11 @@ const TaskFormRender = props => {
         className: classes.formControl
     };
 
-    const disabled = props.pristine || props.submitting;
+    const disabled = formProps.submitting;
 
     return (
         <form
-            onSubmit={props.handleSubmit}
+            onSubmit={formProps.handleSubmit}
             className={classes.form}
             autoComplete="off"
             noValidate
@@ -55,7 +55,7 @@ const TaskFormRender = props => {
                 rows="4"
             />
 
-            {props.initialValues && (<>
+            {formProps.initialValues && (<>
                 <SelectField
                     label="Status"
                     name="status"
@@ -64,7 +64,7 @@ const TaskFormRender = props => {
                     {validStatuses.map(validStatus => (
                         <MenuItem
                             key={validStatus}
-                            disabled={validStatus === props.values.status}
+                            disabled={validStatus === formProps.values.status}
                             value={validStatus}
                         >
                             {validStatus}
@@ -118,14 +118,13 @@ const TaskFormRender = props => {
             </SelectField>
 
             <TaskFormButtons
-                submitButton={props.initialValues ? 'Update' : 'Create'}
+                submitButton={formProps.initialValues ? 'Update' : 'Create'}
                 onCancel={onCancel}
-                onDelete={onDelete}
-                disabled={disabled}
-                onSubmit={props.handleSubmit}
+                disabled={disabled || formProps.pristine}
+                onSubmit={formProps.handleSubmit}
             />
 
-            <pre>{JSON.stringify(props.values, 0, 2)}</pre>
+            <pre>{JSON.stringify(formProps.values, 0, 2)}</pre>
         </form>
     );
 };

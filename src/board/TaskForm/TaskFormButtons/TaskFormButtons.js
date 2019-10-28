@@ -8,7 +8,6 @@ const TaskFormButtons = (props) => {
     const {
         disabled,
         onCancel,
-        onDelete,
         submitButton
     } = props;
 
@@ -20,16 +19,6 @@ const TaskFormButtons = (props) => {
             justify="space-between"
             className={classes.buttonsContainer}
         >
-            {onDelete && (
-                <Button
-                    onClick={onDelete}
-                    type="button"
-                    color="secondary"
-                >
-                    Delete
-                </Button>
-            )}
-
             <div className={classes.buttons}>
                 <Button
                     onClick={onCancel}
