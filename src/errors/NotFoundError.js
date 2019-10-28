@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class NotFoundError extends Component {
-  render() {
+const NotFoundError = props => {
     return (
-      <h1>Not Found</h1>
+        <h1>Not Found</h1>
     );
-  }
 }
 
 export default NotFoundError;

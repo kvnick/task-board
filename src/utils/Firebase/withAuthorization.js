@@ -10,7 +10,6 @@ const withAuthorization = Component => {
         useEffect(() => {
             const listener = firebaseAuth.onAuthStateChanged(
                 authUser => {
-                    console.log(authUser);
                     if (!authUser) {
                         history.push(ROUTES.LOGIN);
                     }
@@ -20,7 +19,7 @@ const withAuthorization = Component => {
             return () => {
                 listener();
             }
-        }, []);
+        }, [history]);
 
         return <Component {...props} />;
     }

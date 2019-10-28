@@ -1,27 +1,26 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import Footer from './layout/Footer';
+import { FooterContainer } from './layout/Footer';
 import { HeaderContainer } from './layout/Header';
 import { NotFoundError } from './errors';
-import { StatusListContainer, TaskDetailContainer, TaskCreate } from './board';
-import { BoardContext } from './context';
+import { TasksPage } from './board';
 import { LoginPageContainer } from './auth/LoginPage';
 import { withAuthentication, withAuthorization } from './utils/Firebase';
 
 export const ROUTES = {
     HOME: '/',
     LOGIN: '/login',
-    TASKS_LIST: '/task',
+    TASKS_PAGE: '/task',
     CREATE_TASK: '/task/create',
     PREVIEW_TASK: '/task/:id'
 };
 
-const PageTasksList = withAuthorization(StatusListContainer);
+const PageTasks = withAuthorization(TasksPage);
 const PageNotFound = withAuthorization(NotFoundError);
 const PageLogin = (props) => <LoginPageContainer {...props} />;
 const redirectToTasksPage = (props) => {
-    return <Redirect to={ROUTES.TASKS_LIST} />;
+    return <Redirect to={ROUTES.TASKS_PAGE} />;
 };
 
 class App extends PureComponent {
@@ -97,29 +96,27 @@ class App extends PureComponent {
 
     render() {
         return (
-            <BoardContext.Provider value={this.getContext()}>
-                <BrowserRouter>
-                    <HeaderContainer />
-                    <Switch>
-                        <Route
-                            exact
-                            path={ROUTES.HOME} render={redirectToTasksPage}
-                        />
-                        <Route
-                            path={ROUTES.TASKS_LIST}
-                            render={props => <PageTasksList {...props} />}
-                        />
-                        <Route
-                            path={ROUTES.LOGIN}
-                            component={props => <PageLogin {...props} />}
-                        />
-                        <Route
-                            render={props => <PageNotFound {...props} />}
-                        />
-                    </Switch>
-                    <Footer />
-                </BrowserRouter>
-            </BoardContext.Provider>
+            <BrowserRouter>
+                <HeaderContainer />
+                <Switch>
+                    <Route
+                        exact
+                        path={ROUTES.HOME} render={redirectToTasksPage}
+                    />
+                    <Route
+                        path={ROUTES.TASKS_PAGE}
+                        render={props => <PageTasks {...props} />}
+                    />
+                    <Route
+                        path={ROUTES.LOGIN}
+                        component={props => <PageLogin {...props} />}
+                    />
+                    <Route
+                        render={props => <PageNotFound {...props} />}
+                    />
+                </Switch>
+                <FooterContainer />
+            </BrowserRouter>
         );
     }
 }

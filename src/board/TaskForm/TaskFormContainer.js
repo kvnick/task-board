@@ -1,17 +1,21 @@
 import { connect } from 'react-redux';
 
 import TaskForm from "./TaksForm";
-import { BoardSelectors } from "../logic";
+import { BoardSelectors, BoardActions } from "../logic";
 
 const mapStateToProps = (state, ownProps) => ({
   statuses: BoardSelectors.statuses(state),
-  seriousness: state.boardReducer.seriousness,
-  priorities: state.boardReducer.priorities,
-  historyActions: state.boardReducer.historyActions,
-  statusesLife: state.boardReducer.statusesLife,
-  task: ownProps.task ? ownProps.task : {}
+  seriousness: state.boardStore.seriousness,
+  priorities: state.boardStore.priorities,
+  historyActions: state.boardStore.historyActions,
+  statusesLife: state.boardStore.statusesLife
+});
+
+const mapDispatchToProps = dispatch => ({
+    onDelete: (id) => dispatch(BoardActions.deleteTask(id))
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TaskForm);

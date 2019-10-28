@@ -1,31 +1,23 @@
 import React from 'react';
-import { compose } from 'recompose';
-
-import { Card, CardContent } from '@material-ui/core'
-
-import { withBoardContext } from '../../context';
+import { Card, CardContent } from '@material-ui/core';
 import { TaskHistoryItem } from '../index';
 
-const TaskHistory = (props) => {
-  const { history } = props;
+const TaskHistory = props => {
+    const { history } = props;
 
-  if (! history) {
-    return (
-      <Card>
-        <CardContent>
-          No task history... yet
-        </CardContent>
-      </Card>
-    )
-  }
+    if (!history.length) {
+        return (
+            <Card>
+                <CardContent>No task history... yet</CardContent>
+            </Card>
+        );
+    }
 
-  return (
-    <>
-      {history.map(historyItem =>
-        <TaskHistoryItem key={historyItem.id} item={historyItem} />
-      )}
-    </>
-  )
-}
+    return (<>
+        {history.map(item => (
+            <TaskHistoryItem key={item.id} item={item} />
+        ))}
+    </>);
+};
 
-export default compose(withBoardContext)(TaskHistory);
+export default TaskHistory;

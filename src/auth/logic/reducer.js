@@ -13,26 +13,23 @@ const initialState = {
     authUser: null
 };
 
-const reducer = (
-    state = initialState,
-    action
-) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.FORM_SET_LOADING:
             return {
                 ...state,
-                loading: action.payload,
+                loading: action.payload
             };
         case ActionTypes.FORM_SET_ERROR:
             return {
                 ...state,
-                error: action.payload,
+                error: action.payload
             };
         case ActionTypes.SET_AUTH_USER:
             return {
                 ...state,
                 authUser: action.payload
-            }
+            };
         default:
             return state;
     }

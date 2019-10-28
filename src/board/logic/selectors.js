@@ -2,11 +2,15 @@ import { createSelector } from 'reselect';
 
 // selectors
 export function tasks(state) {
-  return state.boardReducer.tasks;
+  return state.boardStore.tasks;
 }
 
 export function statuses(state) {
-  return state.boardReducer.statuses;
+  return state.boardStore.statuses;
+}
+
+export function historyActions(state) {
+    return state.boardStore.historyActions;
 }
 
 export const prepareTasksByStatuses = createSelector(
@@ -19,7 +23,7 @@ export const prepareTasksByStatuses = createSelector(
     }), {});
 
     // NOTE! app crashed if tasks without statuses
-    return Object.entries(tasks.reduce((tasks, task) => {
+    return Object.entries((tasks || []).reduce((tasks, task) => {
       const { status } = task;
       tasks[status] = [...tasks[status], task];
       return tasks;

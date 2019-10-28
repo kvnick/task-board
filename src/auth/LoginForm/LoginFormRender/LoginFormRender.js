@@ -1,13 +1,12 @@
 import React from 'react';
 
-import withStyles from "@material-ui/styles/withStyles";
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 import EmailField from '../LoginFormFields/EmailField';
 import PasswordField from '../LoginFormFields/PasswordField';
 import useStyles from './styles';
 
-const LoginFormRender = (props) => {
+const LoginFormRender = props => {
     const classes = useStyles();
     const isSubmitButtonDisabled = props.submitting || props.pristine;
 
@@ -31,7 +30,7 @@ const LoginFormRender = (props) => {
                 disabled={isSubmitButtonDisabled}
             >
                 Sign In
-      </Button>
+            </Button>
         </form>
     );
 };

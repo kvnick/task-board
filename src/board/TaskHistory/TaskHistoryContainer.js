@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import TaskHistory from "./TaskHistory";
 
 const prepareHistoryItems = (history) => {
-  console.log(history);
   if (!history) return [];
 
   return Object.entries(history).reduce((items, item) => {

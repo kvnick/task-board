@@ -1,8 +1,6 @@
 import React from 'react';
-import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,16 +10,20 @@ import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-
-import { withBoardContext } from '../../context';
+import { ROUTES } from '../../App';
 import { formatDate } from '../../utils/helpers';
-import styles from './styles';
+import useStyles from './styles';
 
 const TaskItem = (props) => {
-  const { classes, task } = props;
+  const {
+      task
+  } = props;
+
+  const classes = useStyles();
+  const history = useHistory();
 
   const handleClick = (id) => {
-    props.history.push(`/${id}`);
+    history.push(ROUTES.PREVIEW_TASK.replace(':id', id));
   };
 
   return (
@@ -63,8 +65,4 @@ const TaskItem = (props) => {
   )
 };
 
-export default compose(
-  withStyles(styles),
-  withBoardContext,
-  withRouter
-)(TaskItem);
+export default TaskItem;

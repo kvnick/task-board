@@ -11,7 +11,7 @@ export const withAuthentication = Component => {
             return () => {
                 listener();
             }
-        }, []);
+        }, [props.updateUser]);
 
         return <Component {...props} />;
     };

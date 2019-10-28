@@ -3,7 +3,7 @@ import StatusList from "./StatusList";
 import { BoardActions, BoardSelectors } from '../logic';
 
 const mapStateToProps = (state) => ({
-    ...state.boardReducer,
+    ...state.boardStore,
     tasks: BoardSelectors.prepareTasksByStatuses(state),
 });
 

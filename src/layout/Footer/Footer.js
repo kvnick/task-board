@@ -1,34 +1,41 @@
 import React from 'react';
-import { compose } from 'recompose';
 
-import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-import { withAuthUserContext } from '../../context';
-import styles from './styles';
+import useStyles from './styles';
 
-const Footer = (props) => {
-  const { classes, authUser } = props;
+const Footer = props => {
+    const { authUser } = props;
 
-  return (
-    <footer className={classes.footer}>
-      <Container fixed maxWidth="xl">
-        <Typography variant="h6" align="center" gutterBottom>
-          {authUser
-            ? `Hello, ${authUser.email}`
-            : 'Footer'
-          }
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Made with love by nkorostelev
-        </Typography>
-      </Container>
-    </footer>
-  );
-}
+    const classes = useStyles();
+    const greeting = authUser ? `Hello, ${authUser.email}` : 'Footer';
+    const madeBy = "Made with love by nkorostelev";
 
-export default compose(
-  withStyles(styles),
-  withAuthUserContext
-)(Footer);
+    return (
+        <footer className={classes.footer}>
+            <Container
+                fixed
+                maxWidth="xl"
+            >
+                <Typography
+                    variant="h6"
+                    align="center"
+                    gutterBottom
+                >
+                    {greeting}
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    align="center"
+                    color="textSecondary"
+                    component="p"
+                >
+                    {madeBy}
+                </Typography>
+            </Container>
+        </footer>
+    );
+};
+
+export default Footer;

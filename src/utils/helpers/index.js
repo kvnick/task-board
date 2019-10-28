@@ -1,2 +1,2 @@
 export const formatDate = (string) =>
-  (new Date(string)).toLocaleString()
+    (new Date(string)).toLocaleString()
