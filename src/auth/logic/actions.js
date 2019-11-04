@@ -1,7 +1,6 @@
 import { ActionTypes } from './actionTypes';
 
 export function setError(error) {
-    console.log(error);
     return {
         type: ActionTypes.FORM_SET_ERROR,
         payload: error
@@ -22,17 +21,15 @@ export function setUser(user) {
     }
 }
 
-export function handleLogin(user, history) {
+export function handleLogin(user) {
     return {
         type: ActionTypes.LOGIN,
-        user,
-        history
+        user
     }
 }
 
-export function handleLogout(history) {
+export function handleLogout() {
     return {
-        type: ActionTypes.LOGOUT,
-        history
+        type: ActionTypes.LOGOUT
     }
 }

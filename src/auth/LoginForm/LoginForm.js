@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 
 import loginFormSchema from '../../utils/Validation/yup/LoginForm/loginFormSchema';
 import { LoginFormRender } from './LoginFormRender';
+import getValidation from '../../utils/Validation/yup/getValidation';
 
 const LoginForm = (props) => {
     const { onSubmit } = props;
@@ -14,21 +15,17 @@ const LoginForm = (props) => {
         values: true
     };
 
-    const validate = (values) => {
-        if (Object.keys(values).length > 0) {
-            const validate = loginFormSchema.validate(values);
-        }
-    };
-
     const handleSubmit = (values, formApi, callback) => {
         return onSubmit(values, history);
     };
+
+    const validate = getValidation(loginFormSchema, { abortEarly: false });
 
     return (
         <Form
             onSubmit={handleSubmit}
             subscription={subscription}
-        // validate={validate}
+            validate={validate}
         >
             {formProps => (
                 <LoginFormRender

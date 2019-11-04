@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import { FooterContainer } from './layout/Footer';

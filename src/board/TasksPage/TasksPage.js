@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import { useRouteMatch } from 'react-router-dom';
 
 import { ROUTES } from '../../App';
 import { withAuthorization } from '../../utils/Firebase';
@@ -15,13 +14,11 @@ const PageTaskDetail = withAuthorization(TaskDetailContainer);
 const PageTaskCreate = withAuthorization(TaskCreateContainer);
 
 const TasksPage = (props) => {
-    const match = useRouteMatch();
-
     return (
         <Switch>
-            <Route path={`${match.path}/create`} component={PageTaskCreate} />
-            <Route path={`${match.path}/:id`} component={PageTaskDetail} />
-            <Route exact path={`${match.path}`} component={PageTasksList} />
+            <Route path={ROUTES.CREATE_TASK} component={PageTaskCreate} />
+            <Route path={ROUTES.PREVIEW_TASK} component={PageTaskDetail} />
+            <Route exact path={ROUTES.TASKS_PAGE} component={PageTasksList} />
         </Switch>
     );
 };

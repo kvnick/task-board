@@ -22,7 +22,7 @@ const StatusList = (props) => {
 
     useEffect(() => {
         fetchTasks();
-    }, []);
+    }, [fetchTasks]);
 
     const renderTasks = (tasks, status) => (
         <Paper
@@ -61,6 +61,7 @@ const StatusList = (props) => {
                     <Grid
                         container
                         alignItems="stretch"
+                        wrap="nowrap"
                         spacing={1}
                         className={classes.gridContainer}
                     >

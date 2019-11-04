@@ -50,7 +50,7 @@ const TaskDetail = (props) => {
 
     useEffect(() => {
         fetchTask(match.params.id);
-    }, [match.params.id]);
+    }, [fetchTask, match.params.id]);
 
     return (
         <Container

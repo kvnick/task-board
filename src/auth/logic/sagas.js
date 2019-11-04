@@ -2,15 +2,15 @@ import { put, call } from 'redux-saga/effects';
 import * as AuthActions from './actions';
 import * as firebaseApi from '../../services/FirebaseApp';
 import { ROUTES } from '../../App';
+import history from '../../utils/customHistory';
 
 /**
   @param data Object like { email: '', password: '' }
-  @param history Object @see useHistory from react-router package
  */
-export function* handleLogin(data, history) {
+export function* handleLogin(data) {
     yield put(AuthActions.setLoading(true));
     try {
-        const response = yield call(firebaseApi.doSignInWithEmailAndPassword, data.email, data.password);
+        yield call(firebaseApi.doSignInWithEmailAndPassword, data.email, data.password);
         yield history.push(ROUTES.HOME);
     } catch (error) {
         yield put(AuthActions.setError(prepareFirebaseError(error)));
@@ -19,7 +19,7 @@ export function* handleLogin(data, history) {
     }
 }
 
-export function* handleLogout(history) {
+export function* handleLogout() {
     try {
         yield call(firebaseApi.handleSignOut);
         yield history.push(ROUTES.LOGIN);

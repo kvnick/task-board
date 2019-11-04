@@ -3,6 +3,8 @@ import { Form } from 'react-final-form';
 
 import { Loading } from '../../custom/Loading';
 import TaskFormRender from './TaskFormRender/TaskFormRender';
+import getValidation from '../../utils/Validation/yup/getValidation';
+import taskFormSchema from '../../utils/Validation/yup/TaskForm/taskFormSchema';
 
 const TaskForm = (props) => {
     const {
@@ -13,7 +15,6 @@ const TaskForm = (props) => {
         statusesLife,
         onSubmit,
         onCancel,
-        onDelete,
         task,
     } = props;
 
@@ -30,6 +31,7 @@ const TaskForm = (props) => {
     };
 
     const validStatuses = getValidStatuses(task ? task.status : []);
+    const validate = getValidation(taskFormSchema, { abortEarly: false });
     const subscription = {
         pristine: true,
         values: true,
@@ -45,6 +47,7 @@ const TaskForm = (props) => {
             initialValues={task}
             onSubmit={onSubmit}
             subscription={subscription}
+            validate={validate}
         >
             {formProps => (
                 <TaskFormRender

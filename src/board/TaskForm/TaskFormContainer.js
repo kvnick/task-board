@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import TaskForm from './TaksForm';
-import { BoardSelectors, BoardActions } from '../logic';
+import { BoardSelectors } from '../logic';
 
 const mapStateToProps = (state, ownProps) => ({
     statuses: BoardSelectors.statuses(state),

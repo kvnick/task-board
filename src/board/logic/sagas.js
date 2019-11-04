@@ -65,7 +65,7 @@ export function* updateTask(taskModel) {
     try {
         const { id, comment, ...task } = taskModel;
         const ref = firebaseApi.task(id);
-        const response = yield call([ref, ref.set], task);
+        yield call([ref, ref.set], task);
         const historyActions = yield select(BoardSelectors.historyActions);
 
         if (comment && comment !== '') {
@@ -94,7 +94,7 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
             user: authUser.email
         };
         const ref = firebaseApi.taskHistory(taskId);
-        const response = yield call([ref, ref.push], taskHistory);
+        yield call([ref, ref.push], taskHistory);
     } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -103,9 +103,10 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
 }
 
 export function* deleteTask(id) {
+    yield put(BoardActions.setLoading(true));
     try {
         const ref = firebaseApi.task(id);
-        const response = yield call([ref, ref.remove]);
+        yield call([ref, ref.remove]);
         history.push(ROUTES.TASKS_PAGE);
     } catch(error) {
         yield put(BoardActions.setError(error));
