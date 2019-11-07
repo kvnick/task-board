@@ -6,6 +6,6 @@ export default makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         height: 400,
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+    },
 });

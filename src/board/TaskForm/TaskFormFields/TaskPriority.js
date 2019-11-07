@@ -3,26 +3,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import SelectField from '../../../utils/FormFields/SelectField';
 
 const TaskPriority = props => {
-    const {
-        priorities,
-        ...otherProps
-    } = props;
+    const { priorities, ...otherProps } = props;
 
     const items = priorities.map(x => {
         return {
             key: x,
             value: x,
             text: x,
-            disabled: false
-        }
+            disabled: false,
+        };
     });
 
     return (
-        <SelectField
-            label="Priotiry"
-            name="priority"
-            {...otherProps}
-        >
+        <SelectField label="Priotiry" name="priority" {...otherProps}>
             {items.map(item => (
                 <MenuItem
                     key={item.key}

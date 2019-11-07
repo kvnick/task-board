@@ -10,19 +10,12 @@ const Footer = props => {
 
     const classes = useStyles();
     const greeting = authUser ? `Hello, ${authUser.email}` : 'Footer';
-    const madeBy = "Made with love by nkorostelev";
+    const madeBy = 'Made with love by nkorostelev';
 
     return (
         <footer className={classes.footer}>
-            <Container
-                fixed
-                maxWidth="xl"
-            >
-                <Typography
-                    variant="h6"
-                    align="center"
-                    gutterBottom
-                >
+            <Container fixed maxWidth="xl">
+                <Typography variant="h6" align="center" gutterBottom>
                     {greeting}
                 </Typography>
                 <Typography

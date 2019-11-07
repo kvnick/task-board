@@ -3,13 +3,14 @@ import { BoardActions } from '../logic';
 
 import TaskCreate from './TaskCreate';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     loading: state.boardStore.loading,
-    error: state.boardStore.error
+    error: state.boardStore.error,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    onSubmit: (values, formApi, onFinished) => dispatch(BoardActions.createTask(values)),
+const mapDispatchToProps = dispatch => ({
+    onSubmit: (values, formApi, onFinished) =>
+        dispatch(BoardActions.createTask(values)),
 });
 
 export default connect(

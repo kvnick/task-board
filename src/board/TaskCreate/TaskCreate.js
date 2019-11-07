@@ -12,12 +12,8 @@ import TaskFormContainer from '../TaskForm/TaskFormContainer';
 import { Loading } from '../../custom/Loading';
 import useStyles from './styles';
 
-const TaskCreate = (props) => {
-    const {
-        error,
-        loading,
-        onSubmit
-    } = props;
+const TaskCreate = props => {
+    const { error, loading, onSubmit } = props;
 
     const classes = useStyles();
 
@@ -48,12 +44,10 @@ const TaskCreate = (props) => {
             <Card>
                 <CardHeader title="Create a new task" />
                 <Divider />
-                <CardContent>
-                    {renderCardContent()}
-                </CardContent>
+                <CardContent>{renderCardContent()}</CardContent>
             </Card>
         </Container>
-    )
+    );
 };
 
 export default TaskCreate;

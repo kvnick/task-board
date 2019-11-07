@@ -6,7 +6,7 @@ import TaskFormRender from './TaskFormRender/TaskFormRender';
 import getValidation from '../../utils/Validation/yup/getValidation';
 import taskFormSchema from '../../utils/Validation/yup/TaskForm/taskFormSchema';
 
-const TaskForm = (props) => {
+const TaskForm = props => {
     const {
         loading,
         statuses,
@@ -18,12 +18,15 @@ const TaskForm = (props) => {
         task,
     } = props;
 
-    const getValidStatuses = (initialStatus) => {
-        const validStatuses = statusesLife.reduce((validStatuses, statusLive) => {
-            const [status, toStatuses] = statusLive;
-            validStatuses[status] = toStatuses;
-            return validStatuses;
-        }, {});
+    const getValidStatuses = initialStatus => {
+        const validStatuses = statusesLife.reduce(
+            (validStatuses, statusLive) => {
+                const [status, toStatuses] = statusLive;
+                validStatuses[status] = toStatuses;
+                return validStatuses;
+            },
+            {}
+        );
 
         return validStatuses[initialStatus]
             ? [...validStatuses[initialStatus], initialStatus]
@@ -35,7 +38,7 @@ const TaskForm = (props) => {
     const subscription = {
         pristine: true,
         values: true,
-        initialValues: true
+        initialValues: true,
     };
 
     if (loading) {
@@ -60,7 +63,7 @@ const TaskForm = (props) => {
                 />
             )}
         </Form>
-    )
+    );
 };
 
 export default TaskForm;

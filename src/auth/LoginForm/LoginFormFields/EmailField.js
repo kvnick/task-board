@@ -1,25 +1,23 @@
 import React from 'react';
 
-import TextField from "../../../utils/FormFields/TextField";
+import TextField from '../../../utils/FormFields/TextField';
 
-const EmailField = (props) => {
+const EmailField = props => {
     const fieldProps = {
-        variant: "outlined",
-        margin: "normal",
+        variant: 'outlined',
+        margin: 'normal',
         required: true,
         fullWidth: true,
-        id: "email",
-        label: "Email Address",
-        name: "email",
+        id: 'email',
+        label: 'Email Address',
+        name: 'email',
         formControlProps: {
-            fullWidth: true
+            fullWidth: true,
         },
-        ...props
-    }
+        ...props,
+    };
 
-    return (
-        <TextField {...fieldProps} />
-    );
+    return <TextField {...fieldProps} />;
 };
 
 export default EmailField;

@@ -24,7 +24,7 @@ export function tasks() {
 }
 
 export function task(id) {
-    return firebase.database().ref(`tasks/${id}`)
+    return firebase.database().ref(`tasks/${id}`);
 }
 
 export function taskHistory(id) {

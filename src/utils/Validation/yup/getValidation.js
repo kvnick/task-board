@@ -5,7 +5,7 @@ const getValidation = (schema, options = {}) => values => {
         const errors = error.inner.reduce(
             (formError, innerError) => ({
                 ...formError,
-                [innerError.path]: innerError.message
+                [innerError.path]: innerError.message,
             }),
             {}
         );

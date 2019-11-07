@@ -6,14 +6,14 @@ import { withAuthorization } from '../../utils/Firebase';
 import {
     StatusListContainer,
     TaskDetailContainer,
-    TaskCreateContainer
+    TaskCreateContainer,
 } from '../index';
 
 const PageTasksList = withAuthorization(StatusListContainer);
 const PageTaskDetail = withAuthorization(TaskDetailContainer);
 const PageTaskCreate = withAuthorization(TaskCreateContainer);
 
-const TasksPage = (props) => {
+const TasksPage = props => {
     return (
         <Switch>
             <Route path={ROUTES.CREATE_TASK} component={PageTaskCreate} />

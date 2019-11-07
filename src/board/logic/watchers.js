@@ -47,5 +47,5 @@ export const watchers = [
     createTaskWatcher,
     fetchTaskWatcher,
     updateTaskWatcher,
-    deleteTaskWatcher
+    deleteTaskWatcher,
 ];

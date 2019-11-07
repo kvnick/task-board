@@ -5,12 +5,12 @@ import { AuthActions } from '../../auth/logic';
 import { firebaseAuth } from '../../services/FirebaseApp';
 
 export const withAuthentication = Component => {
-    const WithAuthentication = (props) => {
+    const WithAuthentication = props => {
         useEffect(() => {
-            const listener = firebaseAuth.onAuthStateChanged(props.updateUser)
+            const listener = firebaseAuth.onAuthStateChanged(props.updateUser);
             return () => {
                 listener();
-            }
+            };
         }, [props.updateUser]);
 
         return <Component {...props} />;
@@ -19,7 +19,7 @@ export const withAuthentication = Component => {
     return connect(
         null,
         dispatch => ({
-            updateUser: (authUser) => dispatch(AuthActions.setUser(authUser))
+            updateUser: authUser => dispatch(AuthActions.setUser(authUser)),
         })
     )(WithAuthentication);
 };

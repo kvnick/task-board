@@ -14,13 +14,13 @@ export const ROUTES = {
     LOGIN: '/login',
     TASKS_PAGE: '/task',
     CREATE_TASK: '/task/create',
-    PREVIEW_TASK: '/task/:id'
+    PREVIEW_TASK: '/task/:id',
 };
 
 const PageTasks = withAuthorization(TasksPage);
 const PageNotFound = withAuthorization(NotFoundError);
-const PageLogin = (props) => <LoginPageContainer {...props} />;
-const redirectToTasksPage = (props) => {
+const PageLogin = props => <LoginPageContainer {...props} />;
+const redirectToTasksPage = props => {
     return <Redirect to={ROUTES.TASKS_PAGE} />;
 };
 
@@ -29,10 +29,7 @@ const App = props => {
         <Router history={history}>
             <HeaderContainer />
             <Switch>
-                <Route
-                    exact
-                    path={ROUTES.HOME} render={redirectToTasksPage}
-                />
+                <Route exact path={ROUTES.HOME} render={redirectToTasksPage} />
                 <Route
                     path={ROUTES.TASKS_PAGE}
                     render={props => <PageTasks {...props} />}
@@ -41,9 +38,7 @@ const App = props => {
                     path={ROUTES.LOGIN}
                     component={props => <PageLogin {...props} />}
                 />
-                <Route
-                    render={props => <PageNotFound {...props} />}
-                />
+                <Route render={props => <PageNotFound {...props} />} />
             </Switch>
             <FooterContainer />
         </Router>

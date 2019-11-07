@@ -5,5 +5,5 @@ import { authReducer } from './auth/logic';
 
 export default combineReducers({
     authStore: authReducer,
-    boardStore: boardReducer
+    boardStore: boardReducer,
 });

@@ -8,13 +8,14 @@ const mapStateToProps = (state, ownProps) => ({
     historyActions: BoardSelectors.historyActions(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchTask: (id) => dispatch(BoardActions.fetchTask(id)),
-    onSubmit: (values, formApi, onFinished) => dispatch(BoardActions.updateTask(values)),
-    onDelete: (id) => dispatch(BoardActions.deleteTask(id))
+const mapDispatchToProps = dispatch => ({
+    fetchTask: id => dispatch(BoardActions.fetchTask(id)),
+    onSubmit: (values, formApi, onFinished) =>
+        dispatch(BoardActions.updateTask(values)),
+    onDelete: id => dispatch(BoardActions.deleteTask(id)),
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(TaskDetail);

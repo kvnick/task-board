@@ -1,6 +1,6 @@
 import { takeLatest, call } from 'redux-saga/effects';
 import { ActionTypes } from './actionTypes';
-import * as AuthSagas from "./sagas";
+import * as AuthSagas from './sagas';
 
 function* loginWatcher() {
     yield takeLatest(ActionTypes.LOGIN, loginInvoker);
@@ -18,7 +18,4 @@ function* logoutInvoker(action) {
     yield call(AuthSagas.handleLogout, action.history);
 }
 
-export const watchers = [
-    loginWatcher,
-    logoutWatcher
-];
+export const watchers = [loginWatcher, logoutWatcher];

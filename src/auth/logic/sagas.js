@@ -10,7 +10,11 @@ import history from '../../utils/customHistory';
 export function* handleLogin(data) {
     yield put(AuthActions.setLoading(true));
     try {
-        yield call(firebaseApi.doSignInWithEmailAndPassword, data.email, data.password);
+        yield call(
+            firebaseApi.doSignInWithEmailAndPassword,
+            data.email,
+            data.password
+        );
         yield history.push(ROUTES.HOME);
     } catch (error) {
         yield put(AuthActions.setError(prepareFirebaseError(error)));
@@ -35,11 +39,11 @@ function prepareFirebaseError(error) {
     }
 
     let errors = {
-        'auth/wrong-password': 'Wrong credentials'
+        'auth/wrong-password': 'Wrong credentials',
     };
 
     if (Object.keys(errors).indexOf(errorCode) !== -1) {
         return errors[errorCode];
     }
     return error;
-};
+}

@@ -7,16 +7,11 @@ import { Container } from '@material-ui/core';
 
 import { SnackBarError } from '../../errors';
 import { TaskItem } from '../index';
-import { Loading } from "../../custom/Loading";
+import { Loading } from '../../custom/Loading';
 import useStyles from './styles';
 
-const StatusList = (props) => {
-    const {
-        tasks,
-        error,
-        loading,
-        fetchTasks,
-    } = props;
+const StatusList = props => {
+    const { tasks, error, loading, fetchTasks } = props;
 
     const classes = useStyles();
 
@@ -25,10 +20,7 @@ const StatusList = (props) => {
     }, [fetchTasks]);
 
     const renderTasks = (tasks, status) => (
-        <Paper
-            elevation={0}
-            className={classes.paper}
-        >
+        <Paper elevation={0} className={classes.paper}>
             <Typography
                 gutterBottom
                 component="h2"
@@ -43,48 +35,48 @@ const StatusList = (props) => {
             </Typography>
 
             <div className={classes.tasksWrapper}>
-                {tasks.map(task =>
+                {tasks.map(task => (
                     <TaskItem key={task.id} task={task} />
-                )}
+                ))}
             </div>
         </Paper>
     );
 
     return (
         <main className={classes.root}>
-            {!loading ? (<>
-                <Container
-                    fixed
-                    maxWidth="lg"
-                    className={classes.container}
-                >
-                    <Grid
-                        container
-                        alignItems="stretch"
-                        wrap="nowrap"
-                        spacing={1}
-                        className={classes.gridContainer}
+            {!loading ? (
+                <>
+                    <Container
+                        fixed
+                        maxWidth="lg"
+                        className={classes.container}
                     >
-                        {tasks.map(([status, tasks]) => (
-                            <Grid
-                                item
-                                key={status}
-                                className={classes.item}
-                            >
-                                {renderTasks(tasks, status)}
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
+                        <Grid
+                            container
+                            alignItems="stretch"
+                            wrap="nowrap"
+                            spacing={1}
+                            className={classes.gridContainer}
+                        >
+                            {tasks.map(([status, tasks]) => (
+                                <Grid
+                                    item
+                                    key={status}
+                                    className={classes.item}
+                                >
+                                    {renderTasks(tasks, status)}
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Container>
 
-                {error &&
-                    <SnackBarError error={error} />
-                }
-            </>) : (
+                    {error && <SnackBarError error={error} />}
+                </>
+            ) : (
                 <Loading />
             )}
         </main>
-    )
+    );
 };
 
 export default StatusList;

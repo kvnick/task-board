@@ -28,11 +28,11 @@ export function* fetchTask(id) {
         const snapshot = yield call([ref, ref.once], 'value');
         const task = {
             ...snapshot.val(),
-            id: snapshot.key
+            id: snapshot.key,
         };
 
         yield put(BoardActions.setTask(task));
-    } catch(error) {
+    } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
         yield put(BoardActions.setLoading(false));
@@ -45,15 +45,15 @@ export function* createTask(taskModel) {
         const authUser = yield select(AuthSelectors.authUser);
         const task = {
             ...taskModel,
-            createdDate: (new Date()).toString(),
+            createdDate: new Date().toString(),
             status: 'new',
-            user: authUser.email
+            user: authUser.email,
         };
         const ref = firebaseApi.tasks();
         const response = yield call([ref, ref.push], { ...task });
 
         history.push(ROUTES.PREVIEW_TASK.replace(':id', response.key));
-    } catch(error) {
+    } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
         yield put(BoardActions.setLoading(false));
@@ -71,7 +71,7 @@ export function* updateTask(taskModel) {
         if (comment && comment !== '') {
             const historyData = {
                 comment: comment,
-                date: (new Date()).toString(),
+                date: new Date().toString(),
                 action: historyActions[task.status],
             };
             yield call(createTaskHistory, id, historyData);
@@ -91,7 +91,7 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
         const authUser = yield select(AuthSelectors.authUser);
         const taskHistory = {
             ...taskHistoryModel,
-            user: authUser.email
+            user: authUser.email,
         };
         const ref = firebaseApi.taskHistory(taskId);
         yield call([ref, ref.push], taskHistory);
@@ -108,7 +108,7 @@ export function* deleteTask(id) {
         const ref = firebaseApi.task(id);
         yield call([ref, ref.remove]);
         history.push(ROUTES.TASKS_PAGE);
-    } catch(error) {
+    } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
         yield put(BoardActions.setLoading(false));
@@ -118,6 +118,6 @@ export function* deleteTask(id) {
 function prepareTasks(tasks) {
     return Object.keys(tasks).map(key => ({
         ...tasks[key],
-        id: key
+        id: key,
     }));
 }

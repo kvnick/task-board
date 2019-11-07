@@ -6,13 +6,13 @@ import loginFormSchema from '../../utils/Validation/yup/LoginForm/loginFormSchem
 import { LoginFormRender } from './LoginFormRender';
 import getValidation from '../../utils/Validation/yup/getValidation';
 
-const LoginForm = (props) => {
+const LoginForm = props => {
     const { onSubmit } = props;
     const history = useHistory();
 
     const subscription = {
         pristine: true,
-        values: true
+        values: true,
     };
 
     const handleSubmit = (values, formApi, callback) => {
@@ -27,11 +27,7 @@ const LoginForm = (props) => {
             subscription={subscription}
             validate={validate}
         >
-            {formProps => (
-                <LoginFormRender
-                    {...formProps}
-                />
-            )}
+            {formProps => <LoginFormRender {...formProps} />}
         </Form>
     );
 };

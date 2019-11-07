@@ -4,12 +4,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 
-const TaskFormButtons = (props) => {
-    const {
-        disabled,
-        onCancel,
-        submitButton
-    } = props;
+const TaskFormButtons = props => {
+    const { disabled, onCancel, submitButton } = props;
 
     const classes = useStyles();
 
@@ -20,11 +16,7 @@ const TaskFormButtons = (props) => {
             className={classes.buttonsContainer}
         >
             <div className={classes.buttons}>
-                <Button
-                    onClick={onCancel}
-                    type="button"
-                    color="default"
-                >
+                <Button onClick={onCancel} type="button" color="default">
                     Cancel
                 </Button>
                 <Button
@@ -37,7 +29,7 @@ const TaskFormButtons = (props) => {
                 </Button>
             </div>
         </Grid>
-    )
+    );
 };
 
 export default TaskFormButtons;

@@ -25,7 +25,7 @@ const TaskFormRender = props => {
     const classes = useStyles();
     const formControlProps = {
         fullWidth: true,
-        className: classes.formControl
+        className: classes.formControl,
     };
 
     const disabled = formProps.submitting;
@@ -53,7 +53,9 @@ const TaskFormRender = props => {
                         {validStatuses.map(validStatus => (
                             <MenuItem
                                 key={validStatus}
-                                disabled={validStatus === formProps.values.status}
+                                disabled={
+                                    validStatus === formProps.values.status
+                                }
                                 value={validStatus}
                             >
                                 {validStatus}
@@ -64,7 +66,7 @@ const TaskFormRender = props => {
                     <FormSpy
                         subscription={{
                             values: true,
-                            initialValues: true
+                            initialValues: true,
                         }}
                     >
                         {formSpyProps =>

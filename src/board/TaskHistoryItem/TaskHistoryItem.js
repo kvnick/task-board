@@ -19,11 +19,13 @@ const TaskHistoryItem = props => {
             <CardHeader
                 title={item.user}
                 subheader={item.date && formatDate(item.date)}
-                avatar={item.user && (
-                    <Avatar size="small" className={classes.avatar}>
-                        {item.user.substr(0, 2)}
-                    </Avatar>
-                )}
+                avatar={
+                    item.user && (
+                        <Avatar size="small" className={classes.avatar}>
+                            {item.user.substr(0, 2)}
+                        </Avatar>
+                    )
+                }
             />
 
             <Divider />
@@ -33,10 +35,7 @@ const TaskHistoryItem = props => {
                     <b>{item.action}</b>
                 </Typography>
 
-                {
-                    item.comment &&
-                    <Typography>{item.comment}</Typography>
-                }
+                {item.comment && <Typography>{item.comment}</Typography>}
             </CardContent>
         </Card>
     );

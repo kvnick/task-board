@@ -8,25 +8,16 @@ import { LoginFormContainer } from '../LoginForm';
 import SnackBarError from '../../errors/SnackBarError';
 import useStyles from './styles';
 
-const LoginPage = (props) => {
-    const {
-        loading,
-        error
-    } = props;
+const LoginPage = props => {
+    const { loading, error } = props;
 
     const classes = useStyles();
 
     return (
-        <Container
-            component="main"
-            maxWidth="xs"
-        >
+        <Container component="main" maxWidth="xs">
             {!loading ? (
                 <div className={classes.paper}>
-                    <Typography
-                        component="h1"
-                        variant="h5"
-                    >
+                    <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
 
@@ -37,12 +28,9 @@ const LoginPage = (props) => {
                     <CircularProgress className={classes.progress} />
                 </div>
             )}
-            {
-                error &&
-                <SnackBarError error={error} />
-            }
+            {error && <SnackBarError error={error} />}
         </Container>
-    )
+    );
 };
 
 export default LoginPage;

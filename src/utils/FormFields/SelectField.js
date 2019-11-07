@@ -48,7 +48,7 @@ const SelectField = props => {
             label={label}
             inputProps={{
                 id: name,
-                name
+                name,
             }}
         ></Field>
     );

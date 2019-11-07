@@ -7,7 +7,7 @@ export default makeStyles(theme => ({
     buttons: {
         marginLeft: 'auto',
         '& button:last-child': {
-            marginLeft: '8px'
-        }
-    }
+            marginLeft: '8px',
+        },
+    },
 }));

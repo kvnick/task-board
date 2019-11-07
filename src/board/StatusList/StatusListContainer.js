@@ -1,13 +1,13 @@
-import { connect } from "react-redux";
-import StatusList from "./StatusList";
+import { connect } from 'react-redux';
+import StatusList from './StatusList';
 import { BoardActions, BoardSelectors } from '../logic';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     ...state.boardStore,
     tasks: BoardSelectors.prepareTasksByStatuses(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     fetchTasks: () => dispatch(BoardActions.fetchTasks()),
 });
 

@@ -13,11 +13,13 @@ const TaskHistory = props => {
         );
     }
 
-    return (<>
-        {history.map(item => (
-            <TaskHistoryItem key={item.id} item={item} />
-        ))}
-    </>);
+    return (
+        <>
+            {history.map(item => (
+                <TaskHistoryItem key={item.id} item={item} />
+            ))}
+        </>
+    );
 };
 
 export default TaskHistory;

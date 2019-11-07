@@ -1,25 +1,23 @@
 import React from 'react';
 
-import TextField from "../../../utils/FormFields/TextField";
+import TextField from '../../../utils/FormFields/TextField';
 
-const PasswordField = (props) => {
+const PasswordField = props => {
     const fieldProps = {
-        variant: "outlined",
-        margin: "normal",
+        variant: 'outlined',
+        margin: 'normal',
         required: true,
         fullWidth: true,
-        id: "password",
-        label: "Password",
-        name: "password",
-        type: "password",
+        id: 'password',
+        label: 'Password',
+        name: 'password',
+        type: 'password',
         formControlProps: {
-            fullWidth: true
-        }
-    }
+            fullWidth: true,
+        },
+    };
 
-    return (
-        <TextField {...fieldProps} />
-    );
+    return <TextField {...fieldProps} />;
 };
 
 export default PasswordField;

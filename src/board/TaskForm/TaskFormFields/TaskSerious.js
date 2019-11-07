@@ -3,26 +3,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import SelectField from '../../../utils/FormFields/SelectField';
 
 const TaskSerious = props => {
-    const {
-        seriousness,
-        ...otherProps
-    } = props;
+    const { seriousness, ...otherProps } = props;
 
     const items = seriousness.map(x => {
         return {
             key: x,
             value: x,
             text: x,
-            disabled: false
-        }
+            disabled: false,
+        };
     });
 
     return (
-        <SelectField
-            label="Serious"
-            name="serious"
-            {...otherProps}
-        >
+        <SelectField label="Serious" name="serious" {...otherProps}>
             {items.map(item => (
                 <MenuItem
                     key={item.key}

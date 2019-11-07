@@ -26,14 +26,8 @@ import { Loading } from '../../custom/Loading';
 import { formatDate } from '../../utils/helpers';
 import useStyles from './styles';
 
-const TaskDetail = (props) => {
-    const {
-        task,
-        error,
-        fetchTask,
-        onSubmit,
-        onDelete
-    } = props;
+const TaskDetail = props => {
+    const { task, error, fetchTask, onSubmit, onDelete } = props;
 
     const [tabValue, setTabValue] = useState(0);
     const [classes, match] = [useStyles(), useRouteMatch()];
@@ -42,11 +36,16 @@ const TaskDetail = (props) => {
     const history = useHistory();
 
     const handleDelete = task && task.id ? () => onDelete(task.id) : null;
-    const historyLength = task && task.history ? Object.keys(task.history).length : 0;
+    const historyLength =
+        task && task.history ? Object.keys(task.history).length : 0;
     const handleMenuClose = () => setAnchorEl(null);
-    const handleMenuOpen = () => setAnchorEl(document.getElementById("simple-menu-button"));
+    const handleMenuOpen = () =>
+        setAnchorEl(document.getElementById('simple-menu-button'));
     const onCancel = () => history.push(ROUTES.TASKS_PAGE);
-    const handleTabChange = useCallback((event, value) => setTabValue(value), []);
+    const handleTabChange = useCallback(
+        (event, value) => setTabValue(value),
+        []
+    );
 
     useEffect(() => {
         fetchTask(match.params.id);
@@ -74,11 +73,12 @@ const TaskDetail = (props) => {
                             <Badge
                                 className={classes.tabBadge}
                                 color="primary"
-                                badgeContent={historyLength > 0
-                                    ? historyLength
-                                    : null
+                                badgeContent={
+                                    historyLength > 0 ? historyLength : null
                                 }
-                            >Task History</Badge>
+                            >
+                                Task History
+                            </Badge>
                         }
                     />
                 </Tabs>
@@ -87,35 +87,48 @@ const TaskDetail = (props) => {
                 <Card>
                     <CardHeader
                         title="Task info"
-                        subheader={task && task.createdDate && `${formatDate(task.createdDate)}`}
-                        avatar={task && task.user &&
-                            <Avatar size="small" className={classes.avatar}>
-                                {task.user.substr(0, 2)}
-                            </Avatar>
+                        subheader={
+                            task &&
+                            task.createdDate &&
+                            `${formatDate(task.createdDate)}`
                         }
-                        action={task && (<>
-                            <IconButton
-                                id="simple-menu-button"
-                                onClick={handleMenuOpen}
-                                aria-label="settings"
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                                anchorEl={anchorEl}
-                                id="simple-menu"
-                                keepMounted
-                                open={open}
-                                onClose={handleMenuClose}
-                            >
-                                <MenuItem onClick={handleDelete}>
-                                    <ListItemIcon>
-                                        <DeleteIcon fontSize="small" />
-                                    </ListItemIcon>
-                                    <Typography variant="inherit">Delete</Typography>
-                                </MenuItem>
-                            </Menu>
-                        </>)}
+                        avatar={
+                            task &&
+                            task.user && (
+                                <Avatar size="small" className={classes.avatar}>
+                                    {task.user.substr(0, 2)}
+                                </Avatar>
+                            )
+                        }
+                        action={
+                            task && (
+                                <>
+                                    <IconButton
+                                        id="simple-menu-button"
+                                        onClick={handleMenuOpen}
+                                        aria-label="settings"
+                                    >
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                        anchorEl={anchorEl}
+                                        id="simple-menu"
+                                        keepMounted
+                                        open={open}
+                                        onClose={handleMenuClose}
+                                    >
+                                        <MenuItem onClick={handleDelete}>
+                                            <ListItemIcon>
+                                                <DeleteIcon fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography variant="inherit">
+                                                Delete
+                                            </Typography>
+                                        </MenuItem>
+                                    </Menu>
+                                </>
+                            )
+                        }
                     />
                     <Divider />
                     <CardContent>
@@ -133,16 +146,17 @@ const TaskDetail = (props) => {
                 </Card>
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
-                {task
-                    ? <TaskHistoryContainer history={task.history} />
-                    : <Loading />
-                }
+                {task ? (
+                    <TaskHistoryContainer history={task.history} />
+                ) : (
+                    <Loading />
+                )}
             </TabPanel>
         </Container>
-    )
+    );
 };
 
-const TabPanel = (props) => {
+const TabPanel = props => {
     const { children, value, index, ...other } = props;
 
     return (
