@@ -27,7 +27,6 @@ const TaskFormRender = props => {
         fullWidth: true,
         className: classes.formControl,
     };
-
     const disabled = formProps.submitting;
 
     return (
@@ -64,10 +63,7 @@ const TaskFormRender = props => {
                     </SelectField>
 
                     <FormSpy
-                        subscription={{
-                            values: true,
-                            initialValues: true,
-                        }}
+                        subscription={{ values: true, initialValues: true }}
                     >
                         {formSpyProps =>
                             formSpyProps.values.status !==
