@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { Form } from 'react-final-form';
 
 import { Loading } from '../../custom/Loading';
 import TaskFormRender from './TaskFormRender/TaskFormRender';
-import getValidation from '../../utils/Validation/yup/getValidation';
+import getFinalFormValidation from '../../utils/Validation/yup/getFinalFormValidation';
 import taskFormSchema from '../../utils/Validation/yup/TaskForm/taskFormSchema';
 
 const TaskForm = props => {
@@ -18,23 +18,28 @@ const TaskForm = props => {
         task,
     } = props;
 
-    const getValidStatuses = initialStatus => {
-        const validStatuses = statusesLife.reduce(
-            (validStatuses, statusLive) => {
-                const [status, toStatuses] = statusLive;
-                validStatuses[status] = toStatuses;
-                return validStatuses;
-            },
-            {}
-        );
+    const [statusChanged, setStatusChanged] = useState(null);
 
-        return validStatuses[initialStatus]
-            ? [...validStatuses[initialStatus], initialStatus]
-            : statuses;
-    };
+    const getValidStatuses = useCallback(
+        initialStatus => {
+            const validStatuses = statusesLife.reduce(
+                (validStatuses, statusLive) => {
+                    const [status, toStatuses] = statusLive;
+                    validStatuses[status] = toStatuses;
+                    return validStatuses;
+                },
+                {}
+            );
+
+            return validStatuses[initialStatus]
+                ? [...validStatuses[initialStatus], initialStatus]
+                : statuses;
+        },
+        [statusesLife, statuses]
+    );
 
     const validStatuses = getValidStatuses(task ? task.status : []);
-    const validate = getValidation(taskFormSchema, { abortEarly: false });
+
     const subscription = {
         pristine: true,
         values: true,
@@ -50,7 +55,12 @@ const TaskForm = props => {
             initialValues={task}
             onSubmit={onSubmit}
             subscription={subscription}
-            validate={validate}
+            validate={getFinalFormValidation(taskFormSchema, {
+                abortEarly: false,
+                context: {
+                    statusChanged: statusChanged,
+                },
+            })}
         >
             {formProps => (
                 <TaskFormRender
@@ -59,6 +69,7 @@ const TaskForm = props => {
                     priorities={priorities}
                     seriousness={seriousness}
                     validStatuses={validStatuses}
+                    setStatusChanged={setStatusChanged}
                     {...formProps}
                 />
             )}

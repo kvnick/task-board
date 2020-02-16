@@ -1,7 +1,13 @@
 import { string } from 'yup';
 
-const TaskCommentValidation = string()
-    .required('Task comment field is required')
-    .min(4);
+const TaskCommentValidation = string().when(
+    '$statusChanged',
+    (statusChanged, schema) => {
+        if (statusChanged) {
+            return schema.required('Task comment field is required').min(4);
+        }
+        return null;
+    }
+);
 
 export default TaskCommentValidation;

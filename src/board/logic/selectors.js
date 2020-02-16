@@ -13,25 +13,36 @@ export function historyActions(state) {
     return state.boardStore.historyActions;
 }
 
-export const prepareTasksByStatuses = createSelector(
-    tasks,
-    statuses,
-    function(tasks, statuses) {
-        const initTasks = statuses.reduce(
-            (tasks, status) => ({
-                ...tasks,
-                [status]: [],
-            }),
-            {}
-        );
+export function error(state) {
+    return state.boardStore.error;
+}
 
-        // NOTE! app crashed if tasks without statuses
-        return Object.entries(
-            (tasks || []).reduce((tasks, task) => {
-                const { status } = task;
-                tasks[status] = [...tasks[status], task];
-                return tasks;
-            }, initTasks)
-        );
-    }
-);
+export function loading(state) {
+    return state.boardStore.loading;
+}
+
+export function task(state) {
+    return state.boardStore.task;
+}
+
+export const prepareTasksByStatuses = createSelector(tasks, statuses, function(
+    tasks,
+    statuses
+) {
+    const initTasks = statuses.reduce(
+        (tasks, status) => ({
+            ...tasks,
+            [status]: [],
+        }),
+        {}
+    );
+
+    // NOTE! app crashed if tasks without statuses
+    return Object.entries(
+        (tasks || []).reduce((tasks, task) => {
+            const { status } = task;
+            tasks[status] = [...tasks[status], task];
+            return tasks;
+        }, initTasks)
+    );
+});

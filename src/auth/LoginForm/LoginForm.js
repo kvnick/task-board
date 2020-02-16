@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useHistory } from 'react-router';
 
 import loginFormSchema from '../../utils/Validation/yup/LoginForm/loginFormSchema';
 import { LoginFormRender } from './LoginFormRender';
-import getValidation from '../../utils/Validation/yup/getValidation';
+import getFinalFormValidation from '../../utils/Validation/yup/getFinalFormValidation';
 
-const LoginForm = props => {
-    const { onSubmit } = props;
+const LoginForm = ({ onSubmit }) => {
     const history = useHistory();
 
     const subscription = {
@@ -15,17 +14,18 @@ const LoginForm = props => {
         values: true,
     };
 
-    const handleSubmit = (values, formApi, callback) => {
-        return onSubmit(values, history);
-    };
-
-    const validate = getValidation(loginFormSchema, { abortEarly: false });
+    const handleSubmit = useCallback(
+        (values, formApi, callback) => onSubmit(values, history),
+        [onSubmit, history]
+    );
 
     return (
         <Form
             onSubmit={handleSubmit}
             subscription={subscription}
-            validate={validate}
+            validate={getFinalFormValidation(loginFormSchema, {
+                abortEarly: false,
+            })}
         >
             {formProps => <LoginFormRender {...formProps} />}
         </Form>

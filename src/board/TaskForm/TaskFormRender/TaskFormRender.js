@@ -1,5 +1,5 @@
-import React from 'react';
-import { FormSpy } from 'react-final-form';
+import React, { useCallback, useEffect } from 'react';
+import { useFormState, FormSpy } from 'react-final-form';
 
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -19,6 +19,7 @@ const TaskFormRender = props => {
         priorities,
         seriousness,
         validStatuses,
+        setStatusChanged,
         ...formProps
     } = props;
 
@@ -27,7 +28,11 @@ const TaskFormRender = props => {
         fullWidth: true,
         className: classes.formControl,
     };
-    const disabled = formProps.submitting;
+
+    const { values, initialValues } = useFormState({
+        susbscription: { values: true },
+    });
+    setStatusChanged(values.status !== initialValues.status);
 
     return (
         <form
@@ -90,7 +95,7 @@ const TaskFormRender = props => {
             <TaskFormButtons
                 submitButton={formProps.initialValues ? 'Update' : 'Create'}
                 onCancel={onCancel}
-                disabled={disabled || formProps.pristine}
+                disabled={formProps.disabled || formProps.pristine}
                 onSubmit={formProps.handleSubmit}
             />
 

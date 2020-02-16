@@ -1,4 +1,4 @@
-const getValidation = (schema, options = {}) => values => {
+const getFinalFormValidation = (schema, options = {}) => values => {
     try {
         schema.validateSync(values, options);
     } catch (error) {
@@ -14,4 +14,4 @@ const getValidation = (schema, options = {}) => values => {
     }
 };
 
-export default getValidation;
+export default getFinalFormValidation;

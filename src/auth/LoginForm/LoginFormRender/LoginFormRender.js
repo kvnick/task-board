@@ -6,13 +6,12 @@ import EmailField from '../LoginFormFields/EmailField';
 import PasswordField from '../LoginFormFields/PasswordField';
 import useStyles from './styles';
 
-const LoginFormRender = props => {
+const LoginFormRender = ({ handleSubmit, submitting, pristine }) => {
     const classes = useStyles();
-    const isSubmitButtonDisabled = props.submitting || props.pristine;
 
     return (
         <form
-            onSubmit={props.handleSubmit}
+            onSubmit={handleSubmit}
             className={classes.form}
             noValidate
             autoComplete="off"
@@ -27,7 +26,7 @@ const LoginFormRender = props => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                disabled={isSubmitButtonDisabled}
+                disabled={submitting || pristine}
             >
                 Sign In
             </Button>

@@ -3,7 +3,8 @@ import TaskNameValidation from './TaskNameValidation';
 import TaskCommentValidation from './TaskCommentValidation';
 
 const taskFormSchema = object().shape({
-    name: TaskNameValidation
+    name: TaskNameValidation,
+    comment: TaskCommentValidation,
 });
 
 export default taskFormSchema;

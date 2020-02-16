@@ -35,13 +35,19 @@ const TaskDetail = props => {
     const open = Boolean(anchorEl);
     const history = useHistory();
 
-    const handleDelete = task && task.id ? () => onDelete(task.id) : null;
+    const handleDelete = useCallback(() => onDelete(task.id), [onDelete, task]);
+    const handleMenuClose = useCallback(() => setAnchorEl(null), [setAnchorEl]);
+
     const historyLength =
         task && task.history ? Object.keys(task.history).length : 0;
-    const handleMenuClose = () => setAnchorEl(null);
+
     const handleMenuOpen = () =>
         setAnchorEl(document.getElementById('simple-menu-button'));
-    const onCancel = () => history.push(ROUTES.TASKS_PAGE);
+
+    const handleCancel = useCallback(() => history.push(ROUTES.TASKS_PAGE), [
+        history,
+    ]);
+
     const handleTabChange = useCallback(
         (event, value) => setTabValue(value),
         []
@@ -137,7 +143,7 @@ const TaskDetail = props => {
                                 error={error}
                                 task={task}
                                 onSubmit={onSubmit}
-                                onCancel={onCancel}
+                                onCancel={handleCancel}
                             />
                         ) : (
                             <Loading />

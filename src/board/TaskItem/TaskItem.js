@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
@@ -20,13 +20,13 @@ const TaskItem = props => {
     const classes = useStyles();
     const history = useHistory();
 
-    const handleClick = id => {
-        history.push(ROUTES.PREVIEW_TASK.replace(':id', id));
-    };
+    const handleClick = useCallback(() => {
+        history.push(ROUTES.PREVIEW_TASK.replace(':id', task.id));
+    }, [history, task.id]);
 
     return (
         <Card className={classes.root} elevation={0}>
-            <CardActionArea onClick={() => handleClick(task.id)}>
+            <CardActionArea onClick={handleClick}>
                 <CardHeader
                     titleTypographyProps={{ variant: 'subtitle1' }}
                     subheaderTypographyProps={{ variant: 'subtitle2' }}

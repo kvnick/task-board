@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { BoardActions, BoardSelectors } from '../logic';
 
 const mapStateToProps = (state, ownProps) => ({
-    task: state.boardStore.task,
-    error: state.boardStore.error,
+    task: BoardSelectors.task(state),
+    error: BoardSelectors.error(state),
     historyActions: BoardSelectors.historyActions(state),
 });
 
@@ -15,7 +15,4 @@ const mapDispatchToProps = dispatch => ({
     onDelete: id => dispatch(BoardActions.deleteTask(id)),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TaskDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskDetail);

@@ -7,7 +7,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(AuthActions.handleLogin(values, history)),
 });
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

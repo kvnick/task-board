@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
@@ -18,7 +18,9 @@ const TaskCreate = props => {
     const classes = useStyles();
 
     const history = useHistory();
-    const onCancel = () => history.push(ROUTES.TASKS_PAGE);
+    const onCancel = useCallback(() => history.push(ROUTES.TASKS_PAGE), [
+        history,
+    ]);
 
     const renderCardContent = () => {
         if (loading) {

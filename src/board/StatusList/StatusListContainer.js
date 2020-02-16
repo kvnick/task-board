@@ -11,7 +11,4 @@ const mapDispatchToProps = dispatch => ({
     fetchTasks: () => dispatch(BoardActions.fetchTasks()),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(StatusList);
+export default connect(mapStateToProps, mapDispatchToProps)(StatusList);
