@@ -98,8 +98,6 @@ const TaskFormRender = props => {
                 disabled={formProps.disabled || formProps.pristine}
                 onSubmit={formProps.handleSubmit}
             />
-
-            <pre>{JSON.stringify(formProps.values, 0, 2)}</pre>
         </form>
     );
 };

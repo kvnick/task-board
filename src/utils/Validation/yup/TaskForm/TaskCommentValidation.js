@@ -6,7 +6,7 @@ const TaskCommentValidation = string().when(
         if (statusChanged) {
             return schema.required('Task comment field is required').min(4);
         }
-        return null;
+        return schema;
     }
 );
 
