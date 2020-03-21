@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router";
 
 import { ROUTES } from "../../../App";
 import { withAuthorization } from "../../../services/utils/Firebase";
-import StatusListContainer from "../../StatusList/StatusListContainer";
-import TaskDetailContainer from "../../TaskDetail/TaskDetailContainer";
-import TaskCreateContainer from "../../TaskCreate/TaskCreateContainer";
+import StatusListContainer from "../../../containers/TaskListContainer";
+import TaskDetailContainer from "../TaskDetailPage/TaskDetailContainer";
+import TaskCreateContainer from "../TaskCreatePage/TaskCreateContainer";
 
 const PageTasksList = withAuthorization(StatusListContainer);
 const PageTaskDetail = withAuthorization(TaskDetailContainer);

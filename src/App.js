@@ -8,7 +8,7 @@ import TasksPage from "./components/pages/TasksPage";
 import LoginPage from "./components/pages/LoginPage";
 import {
     withAuthentication,
-    withAuthorization,
+    withAuthorization
 } from "./services/utils/Firebase";
 import history from "./services/utils/customHistory";
 
@@ -17,7 +17,7 @@ export const ROUTES = {
     LOGIN: "/login",
     TASKS_PAGE: "/task",
     CREATE_TASK: "/task/create",
-    PREVIEW_TASK: "/task/:id",
+    PREVIEW_TASK: "/task/:id"
 };
 
 const PageTasks = withAuthorization(TasksPage);
@@ -36,10 +36,7 @@ function App() {
                     path={ROUTES.TASKS_PAGE}
                     render={props => <PageTasks {...props} />}
                 />
-                <Route
-                    path={ROUTES.LOGIN}
-                    component={LoginPage}
-                />
+                <Route path={ROUTES.LOGIN} component={LoginPage} />
                 <Route render={props => <PageNotFound {...props} />} />
             </Switch>
             <FooterContainer />

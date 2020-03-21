@@ -14,14 +14,12 @@ import { ROUTES } from "../../../App";
 import { formatDate } from "../../../services/utils/helpers";
 import useStyles from "./styles";
 
-const TaskItem = props => {
-    const { task } = props;
-
+const TaskItem = ({ task }) => {
     const classes = useStyles();
     const history = useHistory();
 
     const handleClick = useCallback(() => {
-        history.push(ROUTES.PREVIEW_TASK.replace(":id", task.id));
+        history.push(ROUTES.PREVIEW_TASK.replace(":id", task.id.toString()));
     }, [history, task.id]);
 
     return (
@@ -43,12 +41,16 @@ const TaskItem = props => {
                 <Divider />
                 <CardContent>
                     {task.previewText && (
-                        <Typography variant="body2" component="p">
+                        <Typography
+                            className={classes.previewText}
+                            variant="body2"
+                            component="p"
+                        >
                             {task.previewText}
                         </Typography>
                     )}
                 </CardContent>
-                {(task.priority || task.serious || task.user) && (
+                {(task.priority || task.serious) && (
                     <CardActions>
                         <div>
                             {task.priority && (
