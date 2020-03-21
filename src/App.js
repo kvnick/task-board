@@ -1,30 +1,32 @@
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
-import { FooterContainer } from './layout/Footer';
-import { HeaderContainer } from './layout/Header';
-import { NotFoundError } from './errors';
-import { TasksPage } from './board';
-import { LoginPageContainer } from './auth/LoginPage';
-import { withAuthentication, withAuthorization } from './utils/Firebase';
-import history from './utils/customHistory';
+import NotFoundError from "./components/atoms/NotFoundError";
+import FooterContainer from "./containers/FooterContainer";
+import HeaderContainer from "./containers/HeaderContainer";
+import TasksPage from "./components/pages/TasksPage";
+import LoginPage from "./components/pages/LoginPage";
+import {
+    withAuthentication,
+    withAuthorization,
+} from "./services/utils/Firebase";
+import history from "./services/utils/customHistory";
 
 export const ROUTES = {
-    HOME: '/',
-    LOGIN: '/login',
-    TASKS_PAGE: '/task',
-    CREATE_TASK: '/task/create',
-    PREVIEW_TASK: '/task/:id',
+    HOME: "/",
+    LOGIN: "/login",
+    TASKS_PAGE: "/task",
+    CREATE_TASK: "/task/create",
+    PREVIEW_TASK: "/task/:id",
 };
 
 const PageTasks = withAuthorization(TasksPage);
 const PageNotFound = withAuthorization(NotFoundError);
-const PageLogin = props => <LoginPageContainer {...props} />;
 const redirectToTasksPage = props => {
     return <Redirect to={ROUTES.TASKS_PAGE} />;
 };
 
-const App = props => {
+function App() {
     return (
         <Router history={history}>
             <HeaderContainer />
@@ -36,13 +38,13 @@ const App = props => {
                 />
                 <Route
                     path={ROUTES.LOGIN}
-                    component={props => <PageLogin {...props} />}
+                    component={LoginPage}
                 />
                 <Route render={props => <PageNotFound {...props} />} />
             </Switch>
             <FooterContainer />
         </Router>
     );
-};
+}
 
 export default withAuthentication(App);
