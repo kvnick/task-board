@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
     priorities: state.boardStore.priorities,
     historyActions: state.boardStore.historyActions,
     statusesLife: state.boardStore.statusesLife,
-    loading: state.boardStore.loading,
+    loading: state.boardStore.loading
 });
 
 export default connect(mapStateToProps)(TaskForm);

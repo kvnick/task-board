@@ -8,30 +8,30 @@ import { Close } from "@material-ui/icons";
 const styles = theme => ({
     snackbar: {
         error: {
-            backgroundColor: "red",
-        },
-    },
+            backgroundColor: "red"
+        }
+    }
 });
 
 class SnackBarError extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: props.error != null,
+            open: props.error != null
         };
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.error !== prevProps.error) {
             this.setState({
-                open: true,
+                open: true
             });
         }
     }
 
     handleClose = event => {
         this.setState({
-            open: false,
+            open: false
         });
     };
 
@@ -46,11 +46,11 @@ class SnackBarError extends Component {
                         className={classes.snackbar.error}
                         anchorOrigin={{
                             vertical: "bottom",
-                            horizontal: "center",
+                            horizontal: "center"
                         }}
                         open={open}
                         ContentProps={{
-                            "aria-describedby": "message-id",
+                            "aria-describedby": "message-id"
                         }}
                         message={
                             <span id="message-id">{error.toString()}</span>
@@ -64,7 +64,7 @@ class SnackBarError extends Component {
                                 onClick={this.handleClose}
                             >
                                 <Close />
-                            </IconButton>,
+                            </IconButton>
                         ]}
                     />
                 )}

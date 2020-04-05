@@ -17,7 +17,7 @@ export const withAuthentication = Component => {
     };
 
     return connect(null, dispatch => ({
-        updateUser: authUser => dispatch(AuthActions.setUser(authUser)),
+        updateUser: authUser => dispatch(AuthActions.setAuthUser(authUser))
     }))(WithAuthentication);
 };
 

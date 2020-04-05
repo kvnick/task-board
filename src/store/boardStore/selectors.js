@@ -25,24 +25,25 @@ export function task(state) {
     return state.boardStore.task;
 }
 
-export const prepareTasksByStatuses = createSelector(tasks, statuses, function(
+export const prepareTasksByStatuses = createSelector(
     tasks,
-    statuses
-) {
-    const initTasks = statuses.reduce(
-        (tasks, status) => ({
-            ...tasks,
-            [status]: [],
-        }),
-        {}
-    );
+    statuses,
+    (tasks, statuses) => {
+        const initTasks = statuses.reduce(
+            (tasks, status) => ({
+                ...tasks,
+                [status]: []
+            }),
+            {}
+        );
 
-    // NOTE! app crashed if tasks without statuses
-    return Object.entries(
-        (tasks || []).reduce((tasks, task) => {
-            const { status } = task;
-            tasks[status] = [...tasks[status], task];
-            return tasks;
-        }, initTasks)
-    );
-});
+        // NOTE! app crashed if tasks without statuses
+        return Object.entries(
+            (tasks || []).reduce((tasks, task) => {
+                const { status } = task;
+                tasks[status] = [...tasks[status], task];
+                return tasks;
+            }, initTasks)
+        );
+    }
+);

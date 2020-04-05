@@ -4,19 +4,18 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { LoginFormContainer } from "../../organisms/LoginForm";
+import Page from "../../organisms/Page";
+import LoginFormContainer from "../../organisms/LoginForm";
 import SnackBarError from "../../organisms/SnackBarError/SnackBarError";
 import useStyles from "./styles";
-import Page from "../../organisms/Page";
 
 const LoginPage = props => {
     const { loading, error } = props;
-
     const classes = useStyles();
 
     return (
         <Page>
-            <Container component="main" maxWidth="xs">
+            <Container component="div" maxWidth="xs">
                 {!loading ? (
                     <div className={classes.paper}>
                         <Typography component="h1" variant="h5">

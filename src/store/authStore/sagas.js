@@ -1,32 +1,34 @@
 import { put, call } from "redux-saga/effects";
-import * as AuthActions from "./actions";
+
 import * as firebaseApi from "../../services/FirebaseApp";
-import { ROUTES } from "../../App";
 import history from "../../services/utils/customHistory";
+import { normalizedRoutes } from "../../router";
+import * as AuthActions from "./actions";
 
 /**
-  @param data Object like { email: '', password: '' }
+ * Saga to authorize user
+ * @param {UserData} data Object like { email: '', password: '' }
  */
 export function* handleLogin(data) {
-    yield put(AuthActions.setLoading(true));
+    yield put(AuthActions.setFormLoading(true));
     try {
         yield call(
             firebaseApi.doSignInWithEmailAndPassword,
             data.email,
             data.password
         );
-        yield history.push(ROUTES.HOME);
+        yield history.push(normalizedRoutes.home);
     } catch (error) {
-        yield put(AuthActions.setError(prepareFirebaseError(error)));
+        yield put(AuthActions.setFormError(prepareFirebaseError(error)));
     } finally {
-        yield put(AuthActions.setLoading(false));
+        yield put(AuthActions.setFormLoading(false));
     }
 }
 
 export function* handleLogout() {
     try {
         yield call(firebaseApi.handleSignOut);
-        yield history.push(ROUTES.LOGIN);
+        yield history.push(normalizedRoutes.login);
     } catch (error) {
     } finally {
     }
@@ -39,7 +41,7 @@ function prepareFirebaseError(error) {
     }
 
     let errors = {
-        "auth/wrong-password": "Wrong credentials",
+        "auth/wrong-password": "Wrong credentials"
     };
 
     if (Object.keys(errors).indexOf(errorCode) !== -1) {

@@ -4,8 +4,8 @@ import * as firebaseApi from "../../services/FirebaseApp";
 import * as BoardActions from "./actions";
 import * as BoardSelectors from "./selectors";
 import { AuthSelectors } from "../authStore";
-import { ROUTES } from "../../App";
 import history from "../../services/utils/customHistory";
+import { normalizedRoutes } from "../../router/routes";
 
 export function* fetchTasks() {
     yield put(BoardActions.setLoading(true));
@@ -28,7 +28,7 @@ export function* fetchTask(id) {
         const snapshot = yield call([ref, ref.once], "value");
         const task = {
             ...snapshot.val(),
-            id: snapshot.key,
+            id: snapshot.key
         };
 
         yield put(BoardActions.setTask(task));
@@ -47,12 +47,12 @@ export function* createTask(taskModel) {
             ...taskModel,
             createdDate: new Date().toString(),
             status: "new",
-            user: authUser.email,
+            user: authUser.email
         };
         const ref = firebaseApi.tasks();
         const response = yield call([ref, ref.push], { ...task });
 
-        history.push(ROUTES.PREVIEW_TASK.replace(":id", response.key));
+        history.push(normalizedRoutes.taskDetail.replace(":id", response.key));
     } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -72,13 +72,13 @@ export function* updateTask(taskModel) {
             const historyData = {
                 comment: comment,
                 date: new Date().toString(),
-                action: historyActions[task.status],
+                action: historyActions[task.status]
             };
             yield call(createTaskHistory, id, historyData);
         }
 
         yield put(BoardActions.setTask({ ...task, id }));
-        history.push(ROUTES.TASKS_PAGE);
+        history.push(normalizedRoutes.tasks);
     } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -91,7 +91,7 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
         const authUser = yield select(AuthSelectors.authUser);
         const taskHistory = {
             ...taskHistoryModel,
-            user: authUser.email,
+            user: authUser.email
         };
         const ref = firebaseApi.taskHistory(taskId);
         yield call([ref, ref.push], taskHistory);
@@ -107,7 +107,7 @@ export function* deleteTask(id) {
     try {
         const ref = firebaseApi.task(id);
         yield call([ref, ref.remove]);
-        history.push(ROUTES.TASKS_PAGE);
+        history.push(normalizedRoutes.tasks);
     } catch (error) {
         yield put(BoardActions.setError(error));
     } finally {
@@ -118,6 +118,6 @@ export function* deleteTask(id) {
 function prepareTasks(tasks) {
     return Object.keys(tasks).map(key => ({
         ...tasks[key],
-        id: key,
+        id: key
     }));
 }

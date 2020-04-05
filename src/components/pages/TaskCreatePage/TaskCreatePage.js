@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
 
-import { ROUTES } from "../../../App";
+import { normalizedRoutes } from "../../../router";
 import TaskFormContainer from "../../organisms/TaskForm/TaskFormContainer";
 import Page from "../../organisms/Page";
 import Loading from "../../molecules/Loading";
@@ -17,7 +17,7 @@ const TaskCreatePage = props => {
     const { error, loading, onSubmit } = props;
     const classes = useStyles();
     const history = useHistory();
-    const onCancel = useCallback(() => history.push(ROUTES.TASKS_PAGE), [
+    const onCancel = useCallback(() => history.push(normalizedRoutes.tasks), [
         history
     ]);
 

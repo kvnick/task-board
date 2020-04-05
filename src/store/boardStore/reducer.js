@@ -3,7 +3,7 @@ import {
     seriousness,
     statuses,
     historyActions,
-    statusesLife,
+    statusesLife
 } from "../../services/data";
 import { ActionTypes } from "./actionTypes";
 
@@ -16,30 +16,30 @@ const initialState = {
     tasks: [],
     error: null,
     loading: false,
-    task: null,
+    task: null
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.TASKS_LOADING:
+        case ActionTypes.SET_TASKS_LOADING:
             return {
                 ...state,
-                loading: action.payload,
+                loading: action.payload
             };
         case ActionTypes.SET_TASKS:
             return {
                 ...state,
-                tasks: action.payload,
+                tasks: action.payload
             };
         case ActionTypes.SET_TASK:
             return {
                 ...state,
-                task: action.payload,
+                task: action.payload
             };
-        case ActionTypes.TASKS_SET_ERROR:
+        case ActionTypes.SET_TASKS_ERROR:
             return {
                 ...state,
-                error: action.payload,
+                error: action.payload
             };
         default:
             return state;

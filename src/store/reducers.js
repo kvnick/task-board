@@ -5,5 +5,5 @@ import { authStore } from "./authStore";
 
 export default combineReducers({
     authStore,
-    boardStore,
+    boardStore
 });

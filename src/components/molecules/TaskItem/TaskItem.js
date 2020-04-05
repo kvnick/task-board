@@ -10,7 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
-import { ROUTES } from "../../../App";
+
+import { normalizedRoutes } from "../../../router/routes";
 import { formatDate } from "../../../services/utils/helpers";
 import useStyles from "./styles";
 
@@ -19,7 +20,9 @@ const TaskItem = ({ task }) => {
     const history = useHistory();
 
     const handleClick = useCallback(() => {
-        history.push(ROUTES.PREVIEW_TASK.replace(":id", task.id.toString()));
+        history.push(
+            normalizedRoutes.taskDetail.replace(":id", task.id.toString())
+        );
     }, [history, task.id]);
 
     return (

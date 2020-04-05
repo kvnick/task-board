@@ -5,7 +5,11 @@ export default makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: 400,
-        textAlign: "center",
+        textAlign: "center"
     },
+    fixed: {
+        position: "fixed",
+        height: "100%",
+        width: "100%"
+    }
 });

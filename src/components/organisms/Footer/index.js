@@ -1,1 +1,1 @@
-export { default as FooterContainer } from "../../../containers/FooterContainer";
+export { default } from "./Footer";

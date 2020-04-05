@@ -6,9 +6,9 @@ import { Typography } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 
 import TaskItem from "../../molecules/TaskItem";
+import Page from "../../organisms/Page";
 import SnackBarError from "../../organisms/SnackBarError";
 import useStyles from "./styles";
-import Page from "../../organisms/Page";
 
 const TaskListPage = ({ tasks, error }) => {
     const classes = useStyles();
@@ -37,36 +37,28 @@ const TaskListPage = ({ tasks, error }) => {
     );
 
     return (
-        <Page>
-            <main className={classes.root}>
-                <>
-                    <Container
-                        fixed
-                        maxWidth="lg"
-                        className={classes.container}
-                    >
-                        <Grid
-                            container
-                            alignItems="stretch"
-                            wrap="nowrap"
-                            spacing={1}
-                            className={classes.gridContainer}
-                        >
-                            {tasks.map(([status, tasks]) => (
-                                <Grid
-                                    item
-                                    key={status}
-                                    className={classes.item}
-                                >
-                                    {renderTasks(tasks, status)}
-                                </Grid>
-                            ))}
+        <Page
+            classes={{
+                main: classes.root
+            }}
+        >
+            <Container fixed maxWidth="lg" className={classes.container}>
+                <Grid
+                    container
+                    alignItems="stretch"
+                    wrap="nowrap"
+                    spacing={1}
+                    className={classes.gridContainer}
+                >
+                    {tasks.map(([status, tasks]) => (
+                        <Grid item key={status} className={classes.item}>
+                            {renderTasks(tasks, status)}
                         </Grid>
-                    </Container>
+                    ))}
+                </Grid>
+            </Container>
 
-                    {error && <SnackBarError error={error} />}
-                </>
-            </main>
+            {error && <SnackBarError error={error} />}
         </Page>
     );
 };

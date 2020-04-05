@@ -19,14 +19,14 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import { ROUTES } from "../../../App";
-import Loading from "../../molecules/Loading";
 import { formatDate } from "../../../services/utils/helpers";
-import TaskFormContainer from "../../organisms/TaskForm/TaskFormContainer";
+import { normalizedRoutes } from "../../../router";
 import TaskHistoryContainer from "../../../containers/TaskHistoryContainer";
-import useStyles from "./styles";
-import Page from "../../organisms/Page";
+import Loading from "../../molecules/Loading";
 import TabPanel from "../../molecules/TabPanel";
+import TaskFormContainer from "../../organisms/TaskForm/TaskFormContainer";
+import Page from "../../organisms/Page";
+import useStyles from "./styles";
 
 const TaskDetailPage = props => {
     const { task, error, fetchTask, onSubmit, onDelete } = props;
@@ -46,9 +46,10 @@ const TaskDetailPage = props => {
     const handleMenuOpen = () =>
         setAnchorEl(document.getElementById("simple-menu-button"));
 
-    const handleCancel = useCallback(() => history.push(ROUTES.TASKS_PAGE), [
-        history
-    ]);
+    const handleCancel = useCallback(
+        () => history.push(normalizedRoutes.tasks),
+        [history]
+    );
 
     const handleTabChange = useCallback(
         (event, value) => setTabValue(value),

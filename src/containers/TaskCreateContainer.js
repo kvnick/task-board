@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { BoardActions } from "../../../store/boardStore";
-
-import TaskCreatePage from "./TaskCreatePage";
+import { BoardActions } from "../store/boardStore";
+import TaskCreatePage from "../components/pages/TaskCreatePage";
 
 const mapStateToProps = state => ({
     loading: state.boardStore.loading,

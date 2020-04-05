@@ -1,35 +1,35 @@
 import { ActionTypes } from "./actionTypes";
 
-export function setError(error) {
+export function setFormError(error) {
     return {
-        type: ActionTypes.FORM_SET_ERROR,
-        payload: error,
+        type: ActionTypes.SET_FORM_ERROR,
+        payload: error
     };
 }
 
-export function setLoading(loading) {
+export function setFormLoading(loading) {
     return {
-        type: ActionTypes.FORM_SET_LOADING,
-        payload: loading,
+        type: ActionTypes.SET_FORM_LOADING,
+        payload: loading
     };
 }
 
-export function setUser(user) {
+export function setAuthUser(user) {
     return {
         type: ActionTypes.SET_AUTH_USER,
-        payload: user,
+        payload: user
     };
 }
 
 export function handleLogin(user) {
     return {
         type: ActionTypes.LOGIN,
-        user,
+        user
     };
 }
 
 export function handleLogout() {
     return {
-        type: ActionTypes.LOGOUT,
+        type: ActionTypes.LOGOUT
     };
 }

@@ -1,1 +1,1 @@
-export { default as HeaderContainer } from "../../../containers/HeaderContainer";
+export { default } from "./Header";

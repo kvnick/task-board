@@ -8,12 +8,12 @@ export const statusesLife = [
     ["new", ["open"]],
     ["open", ["resolved"]],
     ["resolved", ["open", "closed"]],
-    ["closed", []],
+    ["closed", []]
 ];
 
 export const historyActions = {
     new: "Input",
     open: "Opened",
     resolved: "Resolved",
-    closed: "Closed",
+    closed: "Closed"
 };

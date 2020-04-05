@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 
 import { firebaseAuth } from "../../FirebaseApp";
-import { ROUTES } from "../../../App";
+import { normalizedRoutes } from "../../../router/routes";
 
 const withAuthorization = Component => {
     const WithAuthorization = props => {
@@ -10,7 +10,7 @@ const withAuthorization = Component => {
         useEffect(() => {
             const listener = firebaseAuth.onAuthStateChanged(authUser => {
                 if (!authUser) {
-                    history.push(ROUTES.LOGIN);
+                    history.push(normalizedRoutes.login);
                 }
             });
 
