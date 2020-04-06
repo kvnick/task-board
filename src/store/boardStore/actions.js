@@ -1,5 +1,10 @@
 import { ActionTypes } from "./actionTypes";
 
+/**
+ * Action creator to set tasks loading status to store
+ * @param {boolean} loading
+ * @return {object} Action object with payload
+ */
 export function setLoading(loading) {
     return {
         type: ActionTypes.SET_TASKS_LOADING,
@@ -7,6 +12,11 @@ export function setLoading(loading) {
     };
 }
 
+/**
+ * Action creator to set tasks to store
+ * @param {array} tasks
+ * @return {object} Action object with payload
+ */
 export function setTasks(tasks) {
     return {
         type: ActionTypes.SET_TASKS,
@@ -14,6 +24,11 @@ export function setTasks(tasks) {
     };
 }
 
+/**
+ * Action creator to set task to store
+ * @param {object} task
+ * @return {object} Action object with payload
+ */
 export function setTask(task) {
     return {
         type: ActionTypes.SET_TASK,
@@ -21,6 +36,11 @@ export function setTask(task) {
     };
 }
 
+/**
+ * Action creator to set error to store
+ * @param {string} error
+ * @return {object} Action object with payload
+ */
 export function setError(error) {
     return {
         type: ActionTypes.SET_TASKS_ERROR,
@@ -28,12 +48,20 @@ export function setError(error) {
     };
 }
 
+/**
+ * Action creator to call fetch tasks
+ * @return {object} Action object with payload
+ */
 export function fetchTasks() {
     return {
         type: ActionTypes.FETCH_TASKS
     };
 }
 
+/**
+ * Action creator to call fetch task
+ * @return {object} Action object with payload
+ */
 export function fetchTask(id) {
     return {
         type: ActionTypes.FETCH_TASK,
@@ -41,6 +69,10 @@ export function fetchTask(id) {
     };
 }
 
+/**
+ * Action creator to call create task
+ * @return {object} Action object with payload
+ */
 export function createTask(task) {
     return {
         type: ActionTypes.TASK_CREATE,
@@ -48,6 +80,12 @@ export function createTask(task) {
     };
 }
 
+/**
+ * Action creator to call update task
+ * @param {number} id
+ * @param {object} task
+ * @return {object} Action object with payload
+ */
 export function updateTask(id, task) {
     return {
         type: ActionTypes.TASK_UPDATE,
@@ -56,6 +94,11 @@ export function updateTask(id, task) {
     };
 }
 
+/**
+ * Action creator to call delete task
+ * @param {number} id
+ * @return {object} Action object with payload
+ */
 export function deleteTask(id) {
     return {
         type: ActionTypes.TASK_DELETE,

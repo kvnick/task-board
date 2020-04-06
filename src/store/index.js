@@ -4,6 +4,10 @@ import createSagaMiddleware from "redux-saga";
 import sagaWathcers from "./sagas";
 import reducers from "./reducers";
 
+/**
+ * Function to configure redux store
+ * @return {Store}
+ */
 const configureStore = () => {
     const sagaMiddleware = createSagaMiddleware();
 

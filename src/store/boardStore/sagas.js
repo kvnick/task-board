@@ -7,12 +7,19 @@ import { AuthSelectors } from "../authStore";
 import history from "../../services/utils/customHistory";
 import { normalizedRoutes } from "../../router/routes";
 
+/**
+ * Saga to fetch tasks from api and set them to store
+ */
 export function* fetchTasks() {
     yield put(BoardActions.setLoading(true));
     try {
         const ref = yield call(firebaseApi.tasks);
         const response = yield call([ref, ref.once], "value");
-        const tasks = prepareTasks(response.val());
+        const tasks = Object.keys(response.val()).map(key => ({
+            ...tasks[key],
+            id: key
+        }));
+
         yield put(BoardActions.setTasks(tasks));
     } catch (error) {
         yield put(BoardActions.setError(error));
@@ -21,6 +28,10 @@ export function* fetchTasks() {
     }
 }
 
+/**
+ * Saga to fetch task from api and set it to store
+ * @param {number} id
+ */
 export function* fetchTask(id) {
     yield put(BoardActions.setLoading(true));
     try {
@@ -39,6 +50,11 @@ export function* fetchTask(id) {
     }
 }
 
+/**
+ * Saga to create task by api call and
+ * redirect to newly created task
+ * @param {object} taskModel
+ */
 export function* createTask(taskModel) {
     yield put(BoardActions.setLoading(true));
     try {
@@ -60,6 +76,11 @@ export function* createTask(taskModel) {
     }
 }
 
+/**
+ * Saga to update task by api call with initial task history,
+ * update store and redirect to task page
+ * @param {object} taskModel
+ */
 export function* updateTask(taskModel) {
     yield put(BoardActions.setLoading(true));
     try {
@@ -86,6 +107,11 @@ export function* updateTask(taskModel) {
     }
 }
 
+/**
+ * Saga to create task history by api call
+ * @param {number} taskId
+ * @param {object} taskHistoryModel
+ */
 export function* createTaskHistory(taskId, taskHistoryModel) {
     try {
         const authUser = yield select(AuthSelectors.authUser);
@@ -102,6 +128,10 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
     }
 }
 
+/**
+ * Saga to delete task by api call and redirect to tasks page
+ * @param {number} id
+ */
 export function* deleteTask(id) {
     yield put(BoardActions.setLoading(true));
     try {
@@ -113,11 +143,4 @@ export function* deleteTask(id) {
     } finally {
         yield put(BoardActions.setLoading(false));
     }
-}
-
-function prepareTasks(tasks) {
-    return Object.keys(tasks).map(key => ({
-        ...tasks[key],
-        id: key
-    }));
 }

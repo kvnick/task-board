@@ -2,6 +2,7 @@ import { put, call } from "redux-saga/effects";
 
 import * as firebaseApi from "../../services/FirebaseApp";
 import history from "../../services/utils/customHistory";
+import prepareFirebaseError from "../../services/utils/Firebase/prepareFirebaseError";
 import { normalizedRoutes } from "../../router";
 import * as AuthActions from "./actions";
 
@@ -25,6 +26,9 @@ export function* handleLogin(data) {
     }
 }
 
+/**
+ * Saga-handler to logout user
+ */
 export function* handleLogout() {
     try {
         yield call(firebaseApi.handleSignOut);
@@ -32,20 +36,4 @@ export function* handleLogout() {
     } catch (error) {
     } finally {
     }
-}
-
-function prepareFirebaseError(error) {
-    let errorCode = error;
-    if (typeof error === "object") {
-        errorCode = error.code;
-    }
-
-    let errors = {
-        "auth/wrong-password": "Wrong credentials"
-    };
-
-    if (Object.keys(errors).indexOf(errorCode) !== -1) {
-        return errors[errorCode];
-    }
-    return error;
 }
