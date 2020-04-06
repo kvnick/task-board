@@ -18,7 +18,7 @@ function TaskList({ tasks, loading, fetchTasks }) {
 
 const mapStateToProps = state => ({
     ...state.boardStore,
-    tasks: BoardSelectors.prepareTasksByStatuses(state)
+    tasks: BoardSelectors.getTasksByStatuses(state)
 });
 
 const mapDispatchToProps = dispatch => ({

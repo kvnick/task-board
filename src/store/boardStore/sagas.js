@@ -15,8 +15,10 @@ export function* fetchTasks() {
     try {
         const ref = yield call(firebaseApi.tasks);
         const response = yield call([ref, ref.once], "value");
-        const tasks = Object.keys(response.val()).map(key => ({
-            ...tasks[key],
+
+        const responseTasks = response.val();
+        const tasks = Object.keys(responseTasks).map(key => ({
+            ...responseTasks[key],
             id: key
         }));
 
