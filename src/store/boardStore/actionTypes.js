@@ -10,7 +10,6 @@ export const ActionTypes = {
     SET_TASKS_LOADING: "BOARD__SET_TASKS_LOADING",
     SET_TASKS: "BOARD__SET_TASKS",
     SET_TASK: "BOARD__SET_TASK",
-    SET_TASKS_ERROR: "BOARD__TASKS_SET_ERROR",
     /**
      * =================================================
      * Below this comment put "listening" action types

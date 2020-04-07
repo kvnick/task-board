@@ -1,18 +1,6 @@
 import { ActionTypes } from "./actionTypes";
 
 /**
- * Action Creator to set form error to store
- * @param {string} error
- * @return {object} Action object with payload
- */
-export function setFormError(error) {
-    return {
-        type: ActionTypes.SET_FORM_ERROR,
-        payload: error
-    };
-}
-
-/**
  * Action creator to set form loading state to store
  * @param {boolean} loadnig
  * @return {object} Action object with payload

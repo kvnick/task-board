@@ -16,8 +16,10 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
         <SnackbarProvider maxSnack={3}>
             <Provider store={store}>
-                <CssBaseLine />
-                <App />
+                <SnackbarProvider>
+                    <CssBaseLine />
+                    <App />
+                </SnackbarProvider>
             </Provider>
         </SnackbarProvider>
     </ThemeProvider>,

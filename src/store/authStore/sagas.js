@@ -3,6 +3,7 @@ import { put, call } from "redux-saga/effects";
 import * as firebaseApi from "../../services/FirebaseApp";
 import history from "../../services/utils/customHistory";
 import prepareFirebaseError from "../../services/utils/Firebase/prepareFirebaseError";
+import { NotifierActions } from "../notifierStore";
 import { normalizedRoutes } from "../../router";
 import * as AuthActions from "./actions";
 
@@ -20,7 +21,11 @@ export function* handleLogin(data) {
         );
         yield history.push(normalizedRoutes.home);
     } catch (error) {
-        yield put(AuthActions.setFormError(prepareFirebaseError(error)));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: prepareFirebaseError(error)
+            })
+        );
     } finally {
         yield put(AuthActions.setFormLoading(false));
     }

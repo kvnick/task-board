@@ -37,18 +37,6 @@ export function setTask(task) {
 }
 
 /**
- * Action creator to set error to store
- * @param {string} error
- * @return {object} Action object with payload
- */
-export function setError(error) {
-    return {
-        type: ActionTypes.SET_TASKS_ERROR,
-        payload: error
-    };
-}
-
-/**
  * Action creator to call fetch tasks
  * @return {object} Action object with payload
  */

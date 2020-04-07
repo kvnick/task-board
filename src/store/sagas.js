@@ -17,7 +17,7 @@ export default function* sagaWatchers() {
                         yield call(saga);
                         break;
                     } catch (e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 }
             })

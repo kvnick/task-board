@@ -6,11 +6,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Page from "../../organisms/Page";
 import LoginFormContainer from "../../organisms/LoginForm";
-import SnackBarError from "../../organisms/SnackBarError/SnackBarError";
 import useStyles from "./styles";
 
-const LoginPage = props => {
-    const { loading, error } = props;
+const LoginPage = ({ loading }) => {
     const classes = useStyles();
 
     return (
@@ -29,7 +27,6 @@ const LoginPage = props => {
                         <CircularProgress className={classes.progress} />
                     </div>
                 )}
-                {error && <SnackBarError error={error} />}
             </Container>
         </Page>
     );

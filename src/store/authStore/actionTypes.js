@@ -7,7 +7,6 @@
  * Otherwise this mean that we listen this action types
  */
 export const ActionTypes = {
-    SET_FORM_ERROR: "AUTH__SET_FORM_ERROR",
     SET_AUTH_USER: "AUTH__SET_AUTH_USER",
     SET_FORM_LOADING: "AUTH__SET_FORM_LOADING",
     /**

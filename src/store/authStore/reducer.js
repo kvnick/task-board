@@ -1,7 +1,6 @@
 import { ActionTypes } from "./actionTypes";
 
 const initialState = {
-    error: null,
     loading: false,
     authUser: null
 };
@@ -12,11 +11,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: action.payload
-            };
-        case ActionTypes.SET_FORM_ERROR:
-            return {
-                ...state,
-                error: action.payload
             };
         case ActionTypes.SET_AUTH_USER:
             return {

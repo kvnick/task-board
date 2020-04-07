@@ -4,6 +4,7 @@ import * as firebaseApi from "../../services/FirebaseApp";
 import * as BoardActions from "./actions";
 import * as BoardSelectors from "./selectors";
 import { AuthSelectors } from "../authStore";
+import { NotifierActions } from "../notifierStore";
 import history from "../../services/utils/customHistory";
 import { normalizedRoutes } from "../../router/routes";
 
@@ -24,7 +25,11 @@ export function* fetchTasks() {
 
         yield put(BoardActions.setTasks(tasks));
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: error
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }
@@ -46,7 +51,11 @@ export function* fetchTask(id) {
 
         yield put(BoardActions.setTask(task));
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: error
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }
@@ -72,7 +81,11 @@ export function* createTask(taskModel) {
 
         history.push(normalizedRoutes.taskDetail.replace(":id", response.key));
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: `Error when creating task ${error.toString()}`
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }
@@ -103,7 +116,11 @@ export function* updateTask(taskModel) {
         yield put(BoardActions.setTask({ ...task, id }));
         history.push(normalizedRoutes.tasks);
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: `Error when update task ${error.toString()}`
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }
@@ -124,7 +141,11 @@ export function* createTaskHistory(taskId, taskHistoryModel) {
         const ref = firebaseApi.taskHistory(taskId);
         yield call([ref, ref.push], taskHistory);
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: `Error when create task history ${error.toString()}`
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }
@@ -141,7 +162,11 @@ export function* deleteTask(id) {
         yield call([ref, ref.remove]);
         history.push(normalizedRoutes.tasks);
     } catch (error) {
-        yield put(BoardActions.setError(error));
+        yield put(
+            NotifierActions.enqueueSnackbar({
+                message: `Error when remove task ${error.toString()}`
+            })
+        );
     } finally {
         yield put(BoardActions.setLoading(false));
     }

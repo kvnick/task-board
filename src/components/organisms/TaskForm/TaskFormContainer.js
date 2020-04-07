@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import TaskForm from "./TaksForm";
 import { BoardSelectors } from "../../../store/boardStore";
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
     statuses: BoardSelectors.statuses(state),
     seriousness: state.boardStore.seriousness,
     priorities: state.boardStore.priorities,

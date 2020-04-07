@@ -7,7 +7,6 @@ import { Container } from "@material-ui/core";
 
 import TaskItem from "../../molecules/TaskItem";
 import Page from "../../organisms/Page";
-import SnackBarError from "../../organisms/SnackBarError";
 import useStyles from "./styles";
 
 const TaskListPage = ({ tasks, error }) => {
@@ -57,8 +56,6 @@ const TaskListPage = ({ tasks, error }) => {
                     ))}
                 </Grid>
             </Container>
-
-            {error && <SnackBarError error={error} />}
         </Page>
     );
 };

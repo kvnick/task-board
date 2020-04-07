@@ -29,7 +29,7 @@ import Page from "../../organisms/Page";
 import useStyles from "./styles";
 
 const TaskDetailPage = props => {
-    const { task, error, fetchTask, onSubmit, onDelete } = props;
+    const { task, fetchTask, onSubmit, onDelete } = props;
 
     const [tabValue, setTabValue] = useState(0);
     const [classes, match] = [useStyles(), useRouteMatch()];
@@ -147,7 +147,6 @@ const TaskDetailPage = props => {
                         <CardContent>
                             {task ? (
                                 <TaskFormContainer
-                                    error={error}
                                     task={task}
                                     onSubmit={onSubmit}
                                     onCancel={handleCancel}

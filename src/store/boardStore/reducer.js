@@ -13,9 +13,8 @@ const initialState = {
     priorities,
     historyActions,
     statusesLife,
-    tasks: [],
-    error: null,
     loading: false,
+    tasks: [],
     task: null
 };
 
@@ -35,11 +34,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 task: action.payload
-            };
-        case ActionTypes.SET_TASKS_ERROR:
-            return {
-                ...state,
-                error: action.payload
             };
         default:
             return state;
