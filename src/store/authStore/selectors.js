@@ -3,5 +3,5 @@
  * @param {ResultState} state
  */
 export function authUser(state) {
-    return state.authStore.authUser;
+  return state.authStore.authUser
 }

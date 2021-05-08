@@ -1,1 +1,1 @@
-export { default } from "./NotFoundError";
+export { default } from './NotFoundError'

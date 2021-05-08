@@ -7,13 +7,13 @@
  * Otherwise this mean that we listen this action types
  */
 export const ActionTypes = {
-    SET_AUTH_USER: "AUTH__SET_AUTH_USER",
-    SET_FORM_LOADING: "AUTH__SET_FORM_LOADING",
-    /**
-     * =================================================
-     * Below this comment put "listening" action types
-     * =================================================
-     */
-    LOGIN: "AUTH__LOGIN",
-    LOGOUT: "AUTH__LOGOUT"
-};
+  SET_AUTH_USER: 'AUTH__SET_AUTH_USER',
+  SET_FORM_LOADING: 'AUTH__SET_FORM_LOADING',
+  /**
+   * =================================================
+   * Below this comment put "listening" action types
+   * =================================================
+   */
+  LOGIN: 'AUTH__LOGIN',
+  LOGOUT: 'AUTH__LOGOUT',
+}

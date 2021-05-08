@@ -1,4 +1,4 @@
-import { ActionTypes } from "./actionTypes";
+import { ActionTypes } from './actionTypes'
 
 /**
  * Action creator to add notification
@@ -6,21 +6,21 @@ import { ActionTypes } from "./actionTypes";
  * @return {object} Action object with payload
  */
 export function enqueueSnackbar(notification) {
-    return {
-        type: ActionTypes.ENQUEUE_SNACKBAR,
-        notification: {
-            key: new Date().getTime() + Math.random(),
-            ...notification,
-            options: {
-                anchorOrigin: {
-                    horizontal: "center",
-                    vertical: "bottom"
-                },
-                autoHideDuration: 4000,
-                ...notification.options
-            }
-        }
-    };
+  return {
+    type: ActionTypes.ENQUEUE_SNACKBAR,
+    notification: {
+      key: new Date().getTime() + Math.random(),
+      ...notification,
+      options: {
+        anchorOrigin: {
+          horizontal: 'center',
+          vertical: 'bottom',
+        },
+        autoHideDuration: 4000,
+        ...notification.options,
+      },
+    },
+  }
 }
 
 /**
@@ -29,11 +29,11 @@ export function enqueueSnackbar(notification) {
  * @return {object} Action object with payload
  */
 export function closeSnackbar(key) {
-    return {
-        type: ActionTypes.CLOSE_SNACKBAR,
-        dismissAll: !key,
-        key
-    };
+  return {
+    type: ActionTypes.CLOSE_SNACKBAR,
+    dismissAll: !key,
+    key,
+  }
 }
 
 /**
@@ -42,8 +42,8 @@ export function closeSnackbar(key) {
  * @return {object} Action object with payload
  */
 export function removeSnackbar(key) {
-    return {
-        type: ActionTypes.REMOVE_SNACKBAR,
-        key
-    };
+  return {
+    type: ActionTypes.REMOVE_SNACKBAR,
+    key,
+  }
 }

@@ -1,11 +1,11 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect'
 
 /**
  * Selector to get tasks from store
  * @param {ResultState} state
  */
 export function tasks(state) {
-    return state.boardStore.tasks;
+  return state.boardStore.tasks
 }
 
 /**
@@ -13,7 +13,7 @@ export function tasks(state) {
  * @param {ResultState} state
  */
 export function statuses(state) {
-    return state.boardStore.statuses;
+  return state.boardStore.statuses
 }
 
 /**
@@ -21,7 +21,7 @@ export function statuses(state) {
  * @param {ResultState} state
  */
 export function historyActions(state) {
-    return state.boardStore.historyActions;
+  return state.boardStore.historyActions
 }
 
 /**
@@ -29,7 +29,7 @@ export function historyActions(state) {
  * @param {ResultState} state
  */
 export function error(state) {
-    return state.boardStore.error;
+  return state.boardStore.error
 }
 
 /**
@@ -37,7 +37,7 @@ export function error(state) {
  * @param {ResultState} state
  */
 export function loading(state) {
-    return state.boardStore.loading;
+  return state.boardStore.loading
 }
 
 /**
@@ -45,7 +45,7 @@ export function loading(state) {
  * @param {ResultState} state
  */
 export function task(state) {
-    return state.boardStore.task;
+  return state.boardStore.task
 }
 
 /**
@@ -53,24 +53,24 @@ export function task(state) {
  * @param {ResultState} state
  */
 export const getTasksByStatuses = createSelector(
-    tasks,
-    statuses,
-    (tasks, statuses) => {
-        const initTasks = statuses.reduce(
-            (tasks, status) => ({
-                ...tasks,
-                [status]: []
-            }),
-            {}
-        );
+  tasks,
+  statuses,
+  (tasks, statuses) => {
+    const initTasks = statuses.reduce(
+      (tasks, status) => ({
+        ...tasks,
+        [status]: [],
+      }),
+      {},
+    )
 
-        // NOTE! app crashed if tasks without statuses
-        return Object.entries(
-            (tasks || []).reduce((tasks, task) => {
-                const { status } = task;
-                tasks[status] = [...tasks[status], task];
-                return tasks;
-            }, initTasks)
-        );
-    }
-);
+    // NOTE! app crashed if tasks without statuses
+    return Object.entries(
+      (tasks || []).reduce((tasks, task) => {
+        const { status } = task
+        tasks[status] = [...tasks[status], task]
+        return tasks
+      }, initTasks),
+    )
+  },
+)

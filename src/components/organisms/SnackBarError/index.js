@@ -1,1 +1,1 @@
-export { default } from "./SnackBarError";
+export { default } from './SnackBarError'

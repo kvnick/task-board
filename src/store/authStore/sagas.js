@@ -1,44 +1,44 @@
-import { put, call } from "redux-saga/effects";
+import { put, call } from 'redux-saga/effects'
 
-import * as firebaseApi from "../../services/FirebaseApp";
-import history from "../../services/utils/customHistory";
-import prepareFirebaseError from "../../services/utils/Firebase/prepareFirebaseError";
-import { NotifierActions } from "../notifierStore";
-import { normalizedRoutes } from "../../router";
-import * as AuthActions from "./actions";
+import * as firebaseApi from '../../services/FirebaseApp'
+import history from '../../services/utils/customHistory'
+import prepareFirebaseError from '../../services/utils/Firebase/prepareFirebaseError'
+import { NotifierActions } from '../notifierStore'
+import { normalizedRoutes } from '../../router'
+import * as AuthActions from './actions'
 
 /**
  * Saga to authorize user
  * @param {UserData} data Object like { email: '', password: '' }
  */
 export function* handleLogin(data) {
-    yield put(AuthActions.setFormLoading(true));
-    try {
-        yield call(
-            firebaseApi.doSignInWithEmailAndPassword,
-            data.email,
-            data.password
-        );
-        yield history.push(normalizedRoutes.home);
-    } catch (error) {
-        yield put(
-            NotifierActions.enqueueSnackbar({
-                message: prepareFirebaseError(error)
-            })
-        );
-    } finally {
-        yield put(AuthActions.setFormLoading(false));
-    }
+  yield put(AuthActions.setFormLoading(true))
+  try {
+    yield call(
+      firebaseApi.doSignInWithEmailAndPassword,
+      data.email,
+      data.password,
+    )
+    yield history.push(normalizedRoutes.home)
+  } catch (error) {
+    yield put(
+      NotifierActions.enqueueSnackbar({
+        message: prepareFirebaseError(error),
+      }),
+    )
+  } finally {
+    yield put(AuthActions.setFormLoading(false))
+  }
 }
 
 /**
  * Saga-handler to logout user
  */
 export function* handleLogout() {
-    try {
-        yield call(firebaseApi.handleSignOut);
-        yield history.push(normalizedRoutes.login);
-    } catch (error) {
-    } finally {
-    }
+  try {
+    yield call(firebaseApi.handleSignOut)
+    yield history.push(normalizedRoutes.login)
+  } catch (error) {
+  } finally {
+  }
 }

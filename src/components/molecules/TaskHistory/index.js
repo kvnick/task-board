@@ -1,1 +1,1 @@
-export { default } from "./TaskHistory";
+export { default } from './TaskHistory'

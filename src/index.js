@@ -1,27 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { SnackbarProvider } from "notistack";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { SnackbarProvider } from 'notistack'
 
-import CssBaseLine from "@material-ui/core/CssBaseLine";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import CssBaseLine from '@material-ui/core/CssBaseLine'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 
-import store from "./store";
-import App from "./App";
+import store from './store'
+import App from './App'
 
-const theme = createMuiTheme();
+const theme = createMuiTheme()
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <SnackbarProvider maxSnack={3}>
-            <Provider store={store}>
-                <SnackbarProvider>
-                    <CssBaseLine />
-                    <App />
-                </SnackbarProvider>
-            </Provider>
+  <ThemeProvider theme={theme}>
+    <SnackbarProvider maxSnack={3}>
+      <Provider store={store}>
+        <SnackbarProvider>
+          <CssBaseLine />
+          <App />
         </SnackbarProvider>
-    </ThemeProvider>,
-    document.getElementById("root")
-);
+      </Provider>
+    </SnackbarProvider>
+  </ThemeProvider>,
+  document.getElementById('root'),
+)

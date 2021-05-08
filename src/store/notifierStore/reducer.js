@@ -1,41 +1,41 @@
-import { ActionTypes } from "./actionTypes";
+import { ActionTypes } from './actionTypes'
 
 const initialState = {
-    notifications: []
-};
+  notifications: [],
+}
 
 const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ActionTypes.ENQUEUE_SNACKBAR:
-            return {
-                ...state,
-                notifications: [
-                    ...state.notifications,
-                    {
-                        key: action.key,
-                        ...action.notification
-                    }
-                ]
-            };
-        case ActionTypes.CLOSE_SNACKBAR:
-            return {
-                ...state,
-                notifications: state.notifications.map(notification =>
-                    action.dismissAll || notification.key === action.key
-                        ? { ...notification, dismissed: true }
-                        : { ...notification }
-                )
-            };
-        case ActionTypes.REMOVE_SNACKBAR:
-            return {
-                ...state,
-                notifications: state.notifications.filter(
-                    notification => notification.key !== action.key
-                )
-            };
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case ActionTypes.ENQUEUE_SNACKBAR:
+      return {
+        ...state,
+        notifications: [
+          ...state.notifications,
+          {
+            key: action.key,
+            ...action.notification,
+          },
+        ],
+      }
+    case ActionTypes.CLOSE_SNACKBAR:
+      return {
+        ...state,
+        notifications: state.notifications.map((notification) =>
+          action.dismissAll || notification.key === action.key
+            ? { ...notification, dismissed: true }
+            : { ...notification },
+        ),
+      }
+    case ActionTypes.REMOVE_SNACKBAR:
+      return {
+        ...state,
+        notifications: state.notifications.filter(
+          (notification) => notification.key !== action.key,
+        ),
+      }
+    default:
+      return state
+  }
+}
 
-export default reducer;
+export default reducer

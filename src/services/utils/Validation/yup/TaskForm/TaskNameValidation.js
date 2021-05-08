@@ -1,7 +1,7 @@
-import { string } from "yup";
+import { string } from 'yup'
 
 const TaskNameValidation = string()
-    .required("Task name field is required")
-    .min(4);
+  .required('Task name field is required')
+  .min(4)
 
-export default TaskNameValidation;
+export default TaskNameValidation

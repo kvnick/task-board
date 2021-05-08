@@ -1,9 +1,9 @@
-import { connect } from "react-redux";
-import LoginPage from "../components/pages/LoginPage";
+import { connect } from 'react-redux'
+import LoginPage from '../components/pages/LoginPage'
 
-const mapStateToProps = state => ({
-    error: state.authStore.error,
-    loading: state.authStore.loading
-});
+const mapStateToProps = (state) => ({
+  error: state.authStore.error,
+  loading: state.authStore.loading,
+})
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(LoginPage)

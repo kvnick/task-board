@@ -1,4 +1,4 @@
-import { ActionTypes } from "./actionTypes";
+import { ActionTypes } from './actionTypes'
 
 /**
  * Action creator to set tasks loading status to store
@@ -6,10 +6,10 @@ import { ActionTypes } from "./actionTypes";
  * @return {object} Action object with payload
  */
 export function setLoading(loading) {
-    return {
-        type: ActionTypes.SET_TASKS_LOADING,
-        payload: loading
-    };
+  return {
+    type: ActionTypes.SET_TASKS_LOADING,
+    payload: loading,
+  }
 }
 
 /**
@@ -18,10 +18,10 @@ export function setLoading(loading) {
  * @return {object} Action object with payload
  */
 export function setTasks(tasks) {
-    return {
-        type: ActionTypes.SET_TASKS,
-        payload: tasks
-    };
+  return {
+    type: ActionTypes.SET_TASKS,
+    payload: tasks,
+  }
 }
 
 /**
@@ -30,10 +30,10 @@ export function setTasks(tasks) {
  * @return {object} Action object with payload
  */
 export function setTask(task) {
-    return {
-        type: ActionTypes.SET_TASK,
-        payload: task
-    };
+  return {
+    type: ActionTypes.SET_TASK,
+    payload: task,
+  }
 }
 
 /**
@@ -41,9 +41,9 @@ export function setTask(task) {
  * @return {object} Action object with payload
  */
 export function fetchTasks() {
-    return {
-        type: ActionTypes.FETCH_TASKS
-    };
+  return {
+    type: ActionTypes.FETCH_TASKS,
+  }
 }
 
 /**
@@ -51,10 +51,10 @@ export function fetchTasks() {
  * @return {object} Action object with payload
  */
 export function fetchTask(id) {
-    return {
-        type: ActionTypes.FETCH_TASK,
-        id
-    };
+  return {
+    type: ActionTypes.FETCH_TASK,
+    id,
+  }
 }
 
 /**
@@ -62,10 +62,10 @@ export function fetchTask(id) {
  * @return {object} Action object with payload
  */
 export function createTask(task) {
-    return {
-        type: ActionTypes.TASK_CREATE,
-        task
-    };
+  return {
+    type: ActionTypes.TASK_CREATE,
+    task,
+  }
 }
 
 /**
@@ -75,11 +75,11 @@ export function createTask(task) {
  * @return {object} Action object with payload
  */
 export function updateTask(id, task) {
-    return {
-        type: ActionTypes.TASK_UPDATE,
-        id,
-        task
-    };
+  return {
+    type: ActionTypes.TASK_UPDATE,
+    id,
+    task,
+  }
 }
 
 /**
@@ -88,8 +88,8 @@ export function updateTask(id, task) {
  * @return {object} Action object with payload
  */
 export function deleteTask(id) {
-    return {
-        type: ActionTypes.TASK_DELETE,
-        id
-    };
+  return {
+    type: ActionTypes.TASK_DELETE,
+    id,
+  }
 }

@@ -1,28 +1,28 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router";
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router'
 
-import { firebaseAuth } from "../../FirebaseApp";
-import { normalizedRoutes } from "../../../router/routes";
+import { firebaseAuth } from '../../FirebaseApp'
+import { normalizedRoutes } from '../../../router/routes'
 
-const withAuthorization = Component => {
-    const WithAuthorization = props => {
-        const history = useHistory();
-        useEffect(() => {
-            const listener = firebaseAuth.onAuthStateChanged(authUser => {
-                if (!authUser) {
-                    history.push(normalizedRoutes.login);
-                }
-            });
+const withAuthorization = (Component) => {
+  const WithAuthorization = (props) => {
+    const history = useHistory()
+    useEffect(() => {
+      const listener = firebaseAuth.onAuthStateChanged((authUser) => {
+        if (!authUser) {
+          history.push(normalizedRoutes.login)
+        }
+      })
 
-            return () => {
-                listener();
-            };
-        }, [history]);
+      return () => {
+        listener()
+      }
+    }, [history])
 
-        return <Component {...props} />;
-    };
+    return <Component {...props} />
+  }
 
-    return WithAuthorization;
-};
+  return WithAuthorization
+}
 
-export default withAuthorization;
+export default withAuthorization
