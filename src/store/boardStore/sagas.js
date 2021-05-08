@@ -44,6 +44,11 @@ export function* fetchTask(id) {
   try {
     const ref = yield call(firebaseApi.task, id)
     const snapshot = yield call([ref, ref.once], 'value')
+
+    if (!snapshot.exists()) {
+      throw Error(`Task with id: ${id} not found`)
+    }
+
     const task = {
       ...snapshot.val(),
       id: snapshot.key,
@@ -53,9 +58,10 @@ export function* fetchTask(id) {
   } catch (error) {
     yield put(
       NotifierActions.enqueueSnackbar({
-        message: error,
+        message: error.toString(),
       }),
     )
+    history.push(normalizedRoutes.tasks)
   } finally {
     yield put(BoardActions.setLoading(false))
   }

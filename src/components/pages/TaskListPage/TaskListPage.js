@@ -20,11 +20,10 @@ const TaskListPage = ({ tasks, error }) => {
         variant="subtitle1"
         className={classes.title}
       >
-        {status}
-
-        <span className={classes.titleCount}>
-          {tasks.length > 0 && `(${tasks.length})`}
-        </span>
+        <span className={classes.titleText}>{status}</span>
+        {tasks.length > 0 && (
+          <span className={classes.titleCount}>{tasks.length}</span>
+        )}
       </Typography>
 
       <div className={classes.tasksWrapper}>

@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/styles'
 
 export default makeStyles((theme) => ({
   root: {
-    height: 'calc(100% - 64px - 115px)',
+    flexGrow: 1,
+    overflowY: 'auto',
   },
   '@global': {
     'html, body, #root': {
@@ -14,6 +15,8 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     maxHeight: '100%',
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(1),
     },
@@ -23,7 +26,6 @@ export default makeStyles((theme) => ({
     overflow: 'hidden',
     [theme.breakpoints.down('xs')]: {
       height: 'auto',
-      overflow: 'auto',
     },
   },
   gridContainer: {
@@ -45,19 +47,24 @@ export default makeStyles((theme) => ({
       height: 'auto',
     },
   },
-  tasksWrapper: {
-    height: 'calc(100% - 28px)',
-    maxHeight: '100%',
-    overflowY: 'auto',
-    [theme.breakpoints.down('xs')]: {
-      height: 'auto',
-    },
-  },
   title: {
+    flex: '0 0 auto',
     textTransform: 'capitalize',
     fontWeight: 'bold',
   },
+  titleText: {
+    '& ~ $titleCount': {
+      paddingLeft: theme.spacing(0.5),
+    },
+  },
   titleCount: {
     color: theme.palette.text.secondary,
+  },
+  tasksWrapper: {
+    height: 'auto',
+    [theme.breakpoints.up('xs')]: {
+      flex: '1 1 auto',
+      overflowY: 'auto',
+    },
   },
 }))
